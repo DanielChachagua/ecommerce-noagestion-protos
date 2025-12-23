@@ -2,7 +2,7 @@ syntax = "proto3";
 
 package tenant;
 
-option go_package = "github.com/SaltaGet/ecommerce-fiber-ms/pb;pb";
+option go_package = "github.com/DanielChachagua/ecommerce-noagestion-protos/pb;pb";
 
 import "google/protobuf/timestamp.proto";
 

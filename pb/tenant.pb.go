@@ -178,7 +178,7 @@ const file_tenant_proto_rawDesc = "" +
 	"\x13ListTenantsResponse\x12(\n" +
 	"\atenants\x18\x01 \x03(\v2\x0e.tenant.TenantR\atenants2W\n" +
 	"\rTenantService\x12F\n" +
-	"\vListTenants\x12\x1a.tenant.ListTenantsRequest\x1a\x1b.tenant.ListTenantsResponseB.Z,github.com/SaltaGet/ecommerce-fiber-ms/pb;pbb\x06proto3"
+	"\vListTenants\x12\x1a.tenant.ListTenantsRequest\x1a\x1b.tenant.ListTenantsResponseB>Z<github.com/DanielChachagua/ecommerce-noagestion-protos/pb;pbb\x06proto3"
 
 var (
 	file_tenant_proto_rawDescOnce sync.Once

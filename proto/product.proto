@@ -2,7 +2,7 @@ syntax = "proto3";
 
 package product;
 
-option go_package = "github.com/SaltaGet/ecommerce-fiber-ms/pb;pb";
+option go_package = "github.com/DanielChachagua/ecommerce-noagestion-protos/pb;pb";
 
 message Product {
   string id = 1;

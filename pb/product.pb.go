@@ -246,7 +246,7 @@ const file_product_proto_rawDesc = "" +
 	"\x05total\x18\x02 \x01(\x05R\x05total\x12\x1b\n" +
 	"\ttenant_id\x18\x03 \x01(\tR\btenantId2]\n" +
 	"\x0eProductService\x12K\n" +
-	"\fListProducts\x12\x1c.product.ListProductsRequest\x1a\x1d.product.ListProductsResponseB.Z,github.com/SaltaGet/ecommerce-fiber-ms/pb;pbb\x06proto3"
+	"\fListProducts\x12\x1c.product.ListProductsRequest\x1a\x1d.product.ListProductsResponseB>Z<github.com/DanielChachagua/ecommerce-noagestion-protos/pb;pbb\x06proto3"
 
 var (
 	file_product_proto_rawDescOnce sync.Once
