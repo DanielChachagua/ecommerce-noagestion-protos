@@ -1,0 +1,24 @@
+syntax = "proto3";
+
+package tenant;
+
+option go_package = "github.com/SaltaGet/ecommerce-fiber-ms/pb;pb";
+
+import "google/protobuf/timestamp.proto";
+
+message Tenant {
+  string identifier = 1;
+  bool is_active = 2;
+  google.protobuf.Timestamp expired_at = 3;
+}
+
+message ListTenantsRequest {
+}
+
+message ListTenantsResponse {
+  repeated Tenant tenants = 1;
+}
+
+service TenantService {
+  rpc ListTenants (ListTenantsRequest) returns (ListTenantsResponse);
+}

@@ -1,0 +1,30 @@
+syntax = "proto3";
+
+package product;
+
+option go_package = "github.com/SaltaGet/ecommerce-fiber-ms/pb;pb";
+
+message Product {
+  string id = 1;
+  string name = 2;
+  string description = 3;
+  double price = 4;
+  string currency = 5;
+  int32 stock = 6;
+}
+
+message ListProductsRequest {
+  int32 page = 1;
+  int32 page_size = 2;
+  string tenant_id = 3;
+}
+
+message ListProductsResponse {
+  repeated Product products = 1;
+  int32 total = 2;
+  string tenant_id = 3;
+}
+
+service ProductService {
+  rpc ListProducts (ListProductsRequest) returns (ListProductsResponse);
+}
