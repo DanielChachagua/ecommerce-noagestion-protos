@@ -5,26 +5,51 @@ package product;
 option go_package = "github.com/DanielChachagua/ecommerce-noagestion-protos/pb;pb";
 
 message Product {
-  string id = 1;
-  string name = 2;
-  string description = 3;
+  int64 id = 1;
+  string code = 2;
+  string name = 3;
+  string description = 4;
+  double price = 5;
+  repeated string url_image = 6;
+  int32 stock = 7;
+  string category = 8;
+}
+
+message ProductDTO {
+  int64 id = 1;
+  string code = 2;
+  string name = 3;
   double price = 4;
-  string currency = 5;
+  string url_image = 5;
   int32 stock = 6;
+  string category = 7;
 }
 
 message ListProductsRequest {
   int32 page = 1;
   int32 page_size = 2;
-  string tenant_id = 3;
+  optional int32 category_id = 3;
+  optional string search = 4;
+  enum SortBy {
+    PRICE_LOW_TO_HIGH = 0;  // Menor a mayor precio
+    PRICE_HIGH_TO_LOW = 1;  // Mayor a menor precio
+    NAME_A_Z = 2;           // Alfabético Ascendente
+    NAME_Z_A = 3;           // Alfabético Descendente
+  }
+  optional SortBy sort = 5;
 }
 
 message ListProductsResponse {
-  repeated Product products = 1;
+  repeated ProductDTO products = 1;
   int32 total = 2;
   string tenant_id = 3;
 }
 
+message GetProductRequest {
+  string code = 3;
+}
+
 service ProductService {
   rpc ListProducts (ListProductsRequest) returns (ListProductsResponse);
+  rpc GetProduct (GetProductRequest) returns (Product);
 }
