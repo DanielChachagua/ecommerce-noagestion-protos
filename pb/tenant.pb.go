@@ -26,7 +26,7 @@ type Tenant struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Identifier    string                 `protobuf:"bytes,1,opt,name=identifier,proto3" json:"identifier,omitempty"`
 	IsActive      bool                   `protobuf:"varint,2,opt,name=is_active,json=isActive,proto3" json:"is_active,omitempty"`
-	ExpiredAt     *timestamppb.Timestamp `protobuf:"bytes,3,opt,name=expired_at,json=expiredAt,proto3" json:"expired_at,omitempty"`
+	ExpiredAt     *timestamppb.Timestamp `protobuf:"bytes,3,opt,name=expired_at,json=expiredAt,proto3,oneof" json:"expired_at,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -166,14 +166,15 @@ var File_tenant_proto protoreflect.FileDescriptor
 
 const file_tenant_proto_rawDesc = "" +
 	"\n" +
-	"\ftenant.proto\x12\x06tenant\x1a\x1fgoogle/protobuf/timestamp.proto\"\x80\x01\n" +
+	"\ftenant.proto\x12\x06tenant\x1a\x1fgoogle/protobuf/timestamp.proto\"\x94\x01\n" +
 	"\x06Tenant\x12\x1e\n" +
 	"\n" +
 	"identifier\x18\x01 \x01(\tR\n" +
 	"identifier\x12\x1b\n" +
-	"\tis_active\x18\x02 \x01(\bR\bisActive\x129\n" +
+	"\tis_active\x18\x02 \x01(\bR\bisActive\x12>\n" +
 	"\n" +
-	"expired_at\x18\x03 \x01(\v2\x1a.google.protobuf.TimestampR\texpiredAt\"\x14\n" +
+	"expired_at\x18\x03 \x01(\v2\x1a.google.protobuf.TimestampH\x00R\texpiredAt\x88\x01\x01B\r\n" +
+	"\v_expired_at\"\x14\n" +
 	"\x12ListTenantsRequest\"?\n" +
 	"\x13ListTenantsResponse\x12(\n" +
 	"\atenants\x18\x01 \x03(\v2\x0e.tenant.TenantR\atenants2W\n" +
@@ -216,6 +217,7 @@ func file_tenant_proto_init() {
 	if File_tenant_proto != nil {
 		return
 	}
+	file_tenant_proto_msgTypes[0].OneofWrappers = []any{}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{

@@ -9,7 +9,7 @@ import "google/protobuf/timestamp.proto";
 message Tenant {
   string identifier = 1;
   bool is_active = 2;
-  google.protobuf.Timestamp expired_at = 3;
+  optional google.protobuf.Timestamp expired_at = 3;
 }
 
 message ListTenantsRequest {
