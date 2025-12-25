@@ -26,7 +26,7 @@ type Tenant struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Identifier    string                 `protobuf:"bytes,1,opt,name=identifier,proto3" json:"identifier,omitempty"`
 	IsActive      bool                   `protobuf:"varint,2,opt,name=is_active,json=isActive,proto3" json:"is_active,omitempty"`
-	ExpiredAt     *timestamppb.Timestamp `protobuf:"bytes,3,opt,name=expired_at,json=expiredAt,proto3,oneof" json:"expired_at,omitempty"`
+	Expiration    *timestamppb.Timestamp `protobuf:"bytes,3,opt,name=expiration,proto3,oneof" json:"expiration,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -75,9 +75,9 @@ func (x *Tenant) GetIsActive() bool {
 	return false
 }
 
-func (x *Tenant) GetExpiredAt() *timestamppb.Timestamp {
+func (x *Tenant) GetExpiration() *timestamppb.Timestamp {
 	if x != nil {
-		return x.ExpiredAt
+		return x.Expiration
 	}
 	return nil
 }
@@ -166,15 +166,16 @@ var File_tenant_proto protoreflect.FileDescriptor
 
 const file_tenant_proto_rawDesc = "" +
 	"\n" +
-	"\ftenant.proto\x12\x06tenant\x1a\x1fgoogle/protobuf/timestamp.proto\"\x94\x01\n" +
+	"\ftenant.proto\x12\x06tenant\x1a\x1fgoogle/protobuf/timestamp.proto\"\x95\x01\n" +
 	"\x06Tenant\x12\x1e\n" +
 	"\n" +
 	"identifier\x18\x01 \x01(\tR\n" +
 	"identifier\x12\x1b\n" +
-	"\tis_active\x18\x02 \x01(\bR\bisActive\x12>\n" +
+	"\tis_active\x18\x02 \x01(\bR\bisActive\x12?\n" +
 	"\n" +
-	"expired_at\x18\x03 \x01(\v2\x1a.google.protobuf.TimestampH\x00R\texpiredAt\x88\x01\x01B\r\n" +
-	"\v_expired_at\"\x14\n" +
+	"expiration\x18\x03 \x01(\v2\x1a.google.protobuf.TimestampH\x00R\n" +
+	"expiration\x88\x01\x01B\r\n" +
+	"\v_expiration\"\x14\n" +
 	"\x12ListTenantsRequest\"?\n" +
 	"\x13ListTenantsResponse\x12(\n" +
 	"\atenants\x18\x01 \x03(\v2\x0e.tenant.TenantR\atenants2W\n" +
@@ -201,7 +202,7 @@ var file_tenant_proto_goTypes = []any{
 	(*timestamppb.Timestamp)(nil), // 3: google.protobuf.Timestamp
 }
 var file_tenant_proto_depIdxs = []int32{
-	3, // 0: tenant.Tenant.expired_at:type_name -> google.protobuf.Timestamp
+	3, // 0: tenant.Tenant.expiration:type_name -> google.protobuf.Timestamp
 	0, // 1: tenant.ListTenantsResponse.tenants:type_name -> tenant.Tenant
 	1, // 2: tenant.TenantService.ListTenants:input_type -> tenant.ListTenantsRequest
 	2, // 3: tenant.TenantService.ListTenants:output_type -> tenant.ListTenantsResponse
