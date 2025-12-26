@@ -4,6 +4,11 @@ package product;
 
 option go_package = "github.com/DanielChachagua/ecommerce-noagestion-protos/pb;pb";
 
+message Category {
+  int64 id = 1;
+  string name = 2;
+}
+
 message Product {
   int64 id = 1;
   string code = 2;
@@ -12,7 +17,7 @@ message Product {
   double price = 5;
   repeated string url_image = 6;
   int32 stock = 7;
-  string category = 8;
+  Category category = 8;
 }
 
 message ProductDTO {
@@ -22,7 +27,7 @@ message ProductDTO {
   double price = 4;
   string url_image = 5;
   int32 stock = 6;
-  string category = 7;
+  Category category = 7;
 }
 
 message ListProductsRequest {
