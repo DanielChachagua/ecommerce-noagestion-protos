@@ -133,7 +133,7 @@ type Product struct {
 	Description   string                 `protobuf:"bytes,4,opt,name=description,proto3" json:"description,omitempty"`
 	Price         float64                `protobuf:"fixed64,5,opt,name=price,proto3" json:"price,omitempty"`
 	UrlImage      []string               `protobuf:"bytes,6,rep,name=url_image,json=urlImage,proto3" json:"url_image,omitempty"`
-	Stock         int32                  `protobuf:"varint,7,opt,name=stock,proto3" json:"stock,omitempty"`
+	Stock         float32                `protobuf:"fixed32,7,opt,name=stock,proto3" json:"stock,omitempty"`
 	Category      *Category              `protobuf:"bytes,8,opt,name=category,proto3" json:"category,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
@@ -211,7 +211,7 @@ func (x *Product) GetUrlImage() []string {
 	return nil
 }
 
-func (x *Product) GetStock() int32 {
+func (x *Product) GetStock() float32 {
 	if x != nil {
 		return x.Stock
 	}
@@ -232,7 +232,7 @@ type ProductDTO struct {
 	Name          string                 `protobuf:"bytes,3,opt,name=name,proto3" json:"name,omitempty"`
 	Price         float64                `protobuf:"fixed64,4,opt,name=price,proto3" json:"price,omitempty"`
 	UrlImage      string                 `protobuf:"bytes,5,opt,name=url_image,json=urlImage,proto3" json:"url_image,omitempty"`
-	Stock         int32                  `protobuf:"varint,6,opt,name=stock,proto3" json:"stock,omitempty"`
+	Stock         float32                `protobuf:"fixed32,6,opt,name=stock,proto3" json:"stock,omitempty"`
 	Category      *Category              `protobuf:"bytes,7,opt,name=category,proto3" json:"category,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
@@ -303,7 +303,7 @@ func (x *ProductDTO) GetUrlImage() string {
 	return ""
 }
 
-func (x *ProductDTO) GetStock() int32 {
+func (x *ProductDTO) GetStock() float32 {
 	if x != nil {
 		return x.Stock
 	}
@@ -520,7 +520,7 @@ const file_product_proto_rawDesc = "" +
 	"\vdescription\x18\x04 \x01(\tR\vdescription\x12\x14\n" +
 	"\x05price\x18\x05 \x01(\x01R\x05price\x12\x1b\n" +
 	"\turl_image\x18\x06 \x03(\tR\burlImage\x12\x14\n" +
-	"\x05stock\x18\a \x01(\x05R\x05stock\x12-\n" +
+	"\x05stock\x18\a \x01(\x02R\x05stock\x12-\n" +
 	"\bcategory\x18\b \x01(\v2\x11.product.CategoryR\bcategory\"\xbc\x01\n" +
 	"\n" +
 	"ProductDTO\x12\x0e\n" +
@@ -529,7 +529,7 @@ const file_product_proto_rawDesc = "" +
 	"\x04name\x18\x03 \x01(\tR\x04name\x12\x14\n" +
 	"\x05price\x18\x04 \x01(\x01R\x05price\x12\x1b\n" +
 	"\turl_image\x18\x05 \x01(\tR\burlImage\x12\x14\n" +
-	"\x05stock\x18\x06 \x01(\x05R\x05stock\x12-\n" +
+	"\x05stock\x18\x06 \x01(\x02R\x05stock\x12-\n" +
 	"\bcategory\x18\a \x01(\v2\x11.product.CategoryR\bcategory\"\xd5\x02\n" +
 	"\x13ListProductsRequest\x12\x12\n" +
 	"\x04page\x18\x01 \x01(\x05R\x04page\x12\x1b\n" +
