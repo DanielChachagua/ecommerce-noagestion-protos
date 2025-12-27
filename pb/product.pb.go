@@ -130,7 +130,7 @@ type Product struct {
 	Id            int64                  `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
 	Code          string                 `protobuf:"bytes,2,opt,name=code,proto3" json:"code,omitempty"`
 	Name          string                 `protobuf:"bytes,3,opt,name=name,proto3" json:"name,omitempty"`
-	Description   string                 `protobuf:"bytes,4,opt,name=description,proto3" json:"description,omitempty"`
+	Description   *string                `protobuf:"bytes,4,opt,name=description,proto3,oneof" json:"description,omitempty"`
 	Price         float64                `protobuf:"fixed64,5,opt,name=price,proto3" json:"price,omitempty"`
 	UrlImage      []string               `protobuf:"bytes,6,rep,name=url_image,json=urlImage,proto3" json:"url_image,omitempty"`
 	Stock         float32                `protobuf:"fixed32,7,opt,name=stock,proto3" json:"stock,omitempty"`
@@ -191,8 +191,8 @@ func (x *Product) GetName() string {
 }
 
 func (x *Product) GetDescription() string {
-	if x != nil {
-		return x.Description
+	if x != nil && x.Description != nil {
+		return *x.Description
 	}
 	return ""
 }
@@ -512,16 +512,17 @@ const file_product_proto_rawDesc = "" +
 	"\rproduct.proto\x12\aproduct\".\n" +
 	"\bCategory\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\x03R\x02id\x12\x12\n" +
-	"\x04name\x18\x02 \x01(\tR\x04name\"\xdb\x01\n" +
+	"\x04name\x18\x02 \x01(\tR\x04name\"\xf0\x01\n" +
 	"\aProduct\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\x03R\x02id\x12\x12\n" +
 	"\x04code\x18\x02 \x01(\tR\x04code\x12\x12\n" +
-	"\x04name\x18\x03 \x01(\tR\x04name\x12 \n" +
-	"\vdescription\x18\x04 \x01(\tR\vdescription\x12\x14\n" +
+	"\x04name\x18\x03 \x01(\tR\x04name\x12%\n" +
+	"\vdescription\x18\x04 \x01(\tH\x00R\vdescription\x88\x01\x01\x12\x14\n" +
 	"\x05price\x18\x05 \x01(\x01R\x05price\x12\x1b\n" +
 	"\turl_image\x18\x06 \x03(\tR\burlImage\x12\x14\n" +
 	"\x05stock\x18\a \x01(\x02R\x05stock\x12-\n" +
-	"\bcategory\x18\b \x01(\v2\x11.product.CategoryR\bcategory\"\xbc\x01\n" +
+	"\bcategory\x18\b \x01(\v2\x11.product.CategoryR\bcategoryB\x0e\n" +
+	"\f_description\"\xbc\x01\n" +
 	"\n" +
 	"ProductDTO\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\x03R\x02id\x12\x12\n" +
@@ -602,6 +603,7 @@ func file_product_proto_init() {
 	if File_product_proto != nil {
 		return
 	}
+	file_product_proto_msgTypes[1].OneofWrappers = []any{}
 	file_product_proto_msgTypes[3].OneofWrappers = []any{}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
