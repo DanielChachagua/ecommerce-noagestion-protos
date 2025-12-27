@@ -3,11 +3,7 @@ syntax = "proto3";
 package product;
 
 option go_package = "github.com/DanielChachagua/ecommerce-noagestion-protos/pb;pb";
-
-message Category {
-  int64 id = 1;
-  string name = 2;
-}
+import "category.proto";
 
 message Product {
   int64 id = 1;
@@ -17,7 +13,7 @@ message Product {
   double price = 5;
   repeated string url_image = 6;
   float stock = 7;
-  Category category = 8;
+  category.Category category = 8;
 }
 
 message ProductDTO {
@@ -27,7 +23,7 @@ message ProductDTO {
   double price = 4;
   string url_image = 5;
   float stock = 6;
-  Category category = 7;
+  category.Category category = 7;
 }
 
 message ListProductsRequest {
