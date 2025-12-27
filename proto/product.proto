@@ -13,7 +13,7 @@ message Product {
   int64 id = 1;
   string code = 2;
   string name = 3;
-  string description = 4;
+  optional string description = 4;
   double price = 5;
   repeated string url_image = 6;
   float stock = 7;
