@@ -33,15 +33,16 @@ message ProductDTO {
 message ListProductsRequest {
   int32 page = 1;
   int32 page_size = 2;
-  optional int32 category_id = 3;
-  optional string search = 4;
+  int32 limit = 3;
+  optional int32 category_id = 4;
+  optional string search = 5;
   enum SortBy {
     PRICE_LOW_TO_HIGH = 0;  // Menor a mayor precio
     PRICE_HIGH_TO_LOW = 1;  // Mayor a menor precio
     NAME_A_Z = 2;           // Alfabético Ascendente
     NAME_Z_A = 3;           // Alfabético Descendente
   }
-  optional SortBy sort = 5;
+  optional SortBy sort = 6;
 }
 
 message ListProductsResponse {

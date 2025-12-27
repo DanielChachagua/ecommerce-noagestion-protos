@@ -321,9 +321,10 @@ type ListProductsRequest struct {
 	state         protoimpl.MessageState      `protogen:"open.v1"`
 	Page          int32                       `protobuf:"varint,1,opt,name=page,proto3" json:"page,omitempty"`
 	PageSize      int32                       `protobuf:"varint,2,opt,name=page_size,json=pageSize,proto3" json:"page_size,omitempty"`
-	CategoryId    *int32                      `protobuf:"varint,3,opt,name=category_id,json=categoryId,proto3,oneof" json:"category_id,omitempty"`
-	Search        *string                     `protobuf:"bytes,4,opt,name=search,proto3,oneof" json:"search,omitempty"`
-	Sort          *ListProductsRequest_SortBy `protobuf:"varint,5,opt,name=sort,proto3,enum=product.ListProductsRequest_SortBy,oneof" json:"sort,omitempty"`
+	Limit         int32                       `protobuf:"varint,3,opt,name=limit,proto3" json:"limit,omitempty"`
+	CategoryId    *int32                      `protobuf:"varint,4,opt,name=category_id,json=categoryId,proto3,oneof" json:"category_id,omitempty"`
+	Search        *string                     `protobuf:"bytes,5,opt,name=search,proto3,oneof" json:"search,omitempty"`
+	Sort          *ListProductsRequest_SortBy `protobuf:"varint,6,opt,name=sort,proto3,enum=product.ListProductsRequest_SortBy,oneof" json:"sort,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -368,6 +369,13 @@ func (x *ListProductsRequest) GetPage() int32 {
 func (x *ListProductsRequest) GetPageSize() int32 {
 	if x != nil {
 		return x.PageSize
+	}
+	return 0
+}
+
+func (x *ListProductsRequest) GetLimit() int32 {
+	if x != nil {
+		return x.Limit
 	}
 	return 0
 }
@@ -522,14 +530,15 @@ const file_product_proto_rawDesc = "" +
 	"\x05price\x18\x04 \x01(\x01R\x05price\x12\x1b\n" +
 	"\turl_image\x18\x05 \x01(\tR\burlImage\x12\x14\n" +
 	"\x05stock\x18\x06 \x01(\x05R\x05stock\x12-\n" +
-	"\bcategory\x18\a \x01(\v2\x11.product.CategoryR\bcategory\"\xbf\x02\n" +
+	"\bcategory\x18\a \x01(\v2\x11.product.CategoryR\bcategory\"\xd5\x02\n" +
 	"\x13ListProductsRequest\x12\x12\n" +
 	"\x04page\x18\x01 \x01(\x05R\x04page\x12\x1b\n" +
-	"\tpage_size\x18\x02 \x01(\x05R\bpageSize\x12$\n" +
-	"\vcategory_id\x18\x03 \x01(\x05H\x00R\n" +
+	"\tpage_size\x18\x02 \x01(\x05R\bpageSize\x12\x14\n" +
+	"\x05limit\x18\x03 \x01(\x05R\x05limit\x12$\n" +
+	"\vcategory_id\x18\x04 \x01(\x05H\x00R\n" +
 	"categoryId\x88\x01\x01\x12\x1b\n" +
-	"\x06search\x18\x04 \x01(\tH\x01R\x06search\x88\x01\x01\x12<\n" +
-	"\x04sort\x18\x05 \x01(\x0e2#.product.ListProductsRequest.SortByH\x02R\x04sort\x88\x01\x01\"R\n" +
+	"\x06search\x18\x05 \x01(\tH\x01R\x06search\x88\x01\x01\x12<\n" +
+	"\x04sort\x18\x06 \x01(\x0e2#.product.ListProductsRequest.SortByH\x02R\x04sort\x88\x01\x01\"R\n" +
 	"\x06SortBy\x12\x15\n" +
 	"\x11PRICE_LOW_TO_HIGH\x10\x00\x12\x15\n" +
 	"\x11PRICE_HIGH_TO_LOW\x10\x01\x12\f\n" +
