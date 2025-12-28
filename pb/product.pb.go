@@ -455,7 +455,7 @@ func (x *GetProductRequest) GetCode() string {
 
 type SaveImageRequest struct {
 	state           protoimpl.MessageState `protogen:"open.v1"`
-	ProdId          string                 `protobuf:"bytes,1,opt,name=prod_id,json=prodId,proto3" json:"prod_id,omitempty"`
+	ProdId          int64                  `protobuf:"varint,1,opt,name=prod_id,json=prodId,proto3" json:"prod_id,omitempty"`
 	PrimaryImage    string                 `protobuf:"bytes,2,opt,name=primary_image,json=primaryImage,proto3" json:"primary_image,omitempty"`
 	SecondaryImages []string               `protobuf:"bytes,3,rep,name=secondary_images,json=secondaryImages,proto3" json:"secondary_images,omitempty"`
 	unknownFields   protoimpl.UnknownFields
@@ -492,11 +492,11 @@ func (*SaveImageRequest) Descriptor() ([]byte, []int) {
 	return file_product_proto_rawDescGZIP(), []int{5}
 }
 
-func (x *SaveImageRequest) GetProdId() string {
+func (x *SaveImageRequest) GetProdId() int64 {
 	if x != nil {
 		return x.ProdId
 	}
-	return ""
+	return 0
 }
 
 func (x *SaveImageRequest) GetPrimaryImage() string {
@@ -604,7 +604,7 @@ const file_product_proto_rawDesc = "" +
 	"\x11GetProductRequest\x12\x12\n" +
 	"\x04code\x18\x03 \x01(\tR\x04code\"{\n" +
 	"\x10SaveImageRequest\x12\x17\n" +
-	"\aprod_id\x18\x01 \x01(\tR\x06prodId\x12#\n" +
+	"\aprod_id\x18\x01 \x01(\x03R\x06prodId\x12#\n" +
 	"\rprimary_image\x18\x02 \x01(\tR\fprimaryImage\x12)\n" +
 	"\x10secondary_images\x18\x03 \x03(\tR\x0fsecondaryImages\"-\n" +
 	"\x11SaveImageResponse\x12\x18\n" +
