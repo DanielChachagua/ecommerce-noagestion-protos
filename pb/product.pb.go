@@ -453,6 +453,110 @@ func (x *GetProductRequest) GetCode() string {
 	return ""
 }
 
+type SaveImageRequest struct {
+	state           protoimpl.MessageState `protogen:"open.v1"`
+	ProdId          string                 `protobuf:"bytes,1,opt,name=prod_id,json=prodId,proto3" json:"prod_id,omitempty"`
+	PrimaryImage    string                 `protobuf:"bytes,2,opt,name=primary_image,json=primaryImage,proto3" json:"primary_image,omitempty"`
+	SecondaryImages []string               `protobuf:"bytes,3,rep,name=secondary_images,json=secondaryImages,proto3" json:"secondary_images,omitempty"`
+	unknownFields   protoimpl.UnknownFields
+	sizeCache       protoimpl.SizeCache
+}
+
+func (x *SaveImageRequest) Reset() {
+	*x = SaveImageRequest{}
+	mi := &file_product_proto_msgTypes[5]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *SaveImageRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*SaveImageRequest) ProtoMessage() {}
+
+func (x *SaveImageRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_product_proto_msgTypes[5]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use SaveImageRequest.ProtoReflect.Descriptor instead.
+func (*SaveImageRequest) Descriptor() ([]byte, []int) {
+	return file_product_proto_rawDescGZIP(), []int{5}
+}
+
+func (x *SaveImageRequest) GetProdId() string {
+	if x != nil {
+		return x.ProdId
+	}
+	return ""
+}
+
+func (x *SaveImageRequest) GetPrimaryImage() string {
+	if x != nil {
+		return x.PrimaryImage
+	}
+	return ""
+}
+
+func (x *SaveImageRequest) GetSecondaryImages() []string {
+	if x != nil {
+		return x.SecondaryImages
+	}
+	return nil
+}
+
+type SaveImageResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Success       bool                   `protobuf:"varint,1,opt,name=success,proto3" json:"success,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *SaveImageResponse) Reset() {
+	*x = SaveImageResponse{}
+	mi := &file_product_proto_msgTypes[6]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *SaveImageResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*SaveImageResponse) ProtoMessage() {}
+
+func (x *SaveImageResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_product_proto_msgTypes[6]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use SaveImageResponse.ProtoReflect.Descriptor instead.
+func (*SaveImageResponse) Descriptor() ([]byte, []int) {
+	return file_product_proto_rawDescGZIP(), []int{6}
+}
+
+func (x *SaveImageResponse) GetSuccess() bool {
+	if x != nil {
+		return x.Success
+	}
+	return false
+}
+
 var File_product_proto protoreflect.FileDescriptor
 
 const file_product_proto_rawDesc = "" +
@@ -498,11 +602,18 @@ const file_product_proto_rawDesc = "" +
 	"\x05total\x18\x02 \x01(\x05R\x05total\x12\x1b\n" +
 	"\ttenant_id\x18\x03 \x01(\tR\btenantId\"'\n" +
 	"\x11GetProductRequest\x12\x12\n" +
-	"\x04code\x18\x03 \x01(\tR\x04code2\x99\x01\n" +
+	"\x04code\x18\x03 \x01(\tR\x04code\"{\n" +
+	"\x10SaveImageRequest\x12\x17\n" +
+	"\aprod_id\x18\x01 \x01(\tR\x06prodId\x12#\n" +
+	"\rprimary_image\x18\x02 \x01(\tR\fprimaryImage\x12)\n" +
+	"\x10secondary_images\x18\x03 \x03(\tR\x0fsecondaryImages\"-\n" +
+	"\x11SaveImageResponse\x12\x18\n" +
+	"\asuccess\x18\x01 \x01(\bR\asuccess2\xe0\x01\n" +
 	"\x0eProductService\x12K\n" +
 	"\fListProducts\x12\x1c.product.ListProductsRequest\x1a\x1d.product.ListProductsResponse\x12:\n" +
 	"\n" +
-	"GetProduct\x12\x1a.product.GetProductRequest\x1a\x10.product.ProductB>Z<github.com/DanielChachagua/ecommerce-noagestion-protos/pb;pbb\x06proto3"
+	"GetProduct\x12\x1a.product.GetProductRequest\x1a\x10.product.Product\x12E\n" +
+	"\fSaveUrlImage\x12\x19.product.SaveImageRequest\x1a\x1a.product.SaveImageResponseB>Z<github.com/DanielChachagua/ecommerce-noagestion-protos/pb;pbb\x06proto3"
 
 var (
 	file_product_proto_rawDescOnce sync.Once
@@ -517,7 +628,7 @@ func file_product_proto_rawDescGZIP() []byte {
 }
 
 var file_product_proto_enumTypes = make([]protoimpl.EnumInfo, 1)
-var file_product_proto_msgTypes = make([]protoimpl.MessageInfo, 5)
+var file_product_proto_msgTypes = make([]protoimpl.MessageInfo, 7)
 var file_product_proto_goTypes = []any{
 	(ListProductsRequest_SortBy)(0), // 0: product.ListProductsRequest.SortBy
 	(*Product)(nil),                 // 1: product.Product
@@ -525,19 +636,23 @@ var file_product_proto_goTypes = []any{
 	(*ListProductsRequest)(nil),     // 3: product.ListProductsRequest
 	(*ListProductsResponse)(nil),    // 4: product.ListProductsResponse
 	(*GetProductRequest)(nil),       // 5: product.GetProductRequest
-	(*Category)(nil),                // 6: category.Category
+	(*SaveImageRequest)(nil),        // 6: product.SaveImageRequest
+	(*SaveImageResponse)(nil),       // 7: product.SaveImageResponse
+	(*Category)(nil),                // 8: category.Category
 }
 var file_product_proto_depIdxs = []int32{
-	6, // 0: product.Product.category:type_name -> category.Category
-	6, // 1: product.ProductDTO.category:type_name -> category.Category
+	8, // 0: product.Product.category:type_name -> category.Category
+	8, // 1: product.ProductDTO.category:type_name -> category.Category
 	0, // 2: product.ListProductsRequest.sort:type_name -> product.ListProductsRequest.SortBy
 	2, // 3: product.ListProductsResponse.products:type_name -> product.ProductDTO
 	3, // 4: product.ProductService.ListProducts:input_type -> product.ListProductsRequest
 	5, // 5: product.ProductService.GetProduct:input_type -> product.GetProductRequest
-	4, // 6: product.ProductService.ListProducts:output_type -> product.ListProductsResponse
-	1, // 7: product.ProductService.GetProduct:output_type -> product.Product
-	6, // [6:8] is the sub-list for method output_type
-	4, // [4:6] is the sub-list for method input_type
+	6, // 6: product.ProductService.SaveUrlImage:input_type -> product.SaveImageRequest
+	4, // 7: product.ProductService.ListProducts:output_type -> product.ListProductsResponse
+	1, // 8: product.ProductService.GetProduct:output_type -> product.Product
+	7, // 9: product.ProductService.SaveUrlImage:output_type -> product.SaveImageResponse
+	7, // [7:10] is the sub-list for method output_type
+	4, // [4:7] is the sub-list for method input_type
 	4, // [4:4] is the sub-list for extension type_name
 	4, // [4:4] is the sub-list for extension extendee
 	0, // [0:4] is the sub-list for field type_name
@@ -557,7 +672,7 @@ func file_product_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_product_proto_rawDesc), len(file_product_proto_rawDesc)),
 			NumEnums:      1,
-			NumMessages:   5,
+			NumMessages:   7,
 			NumExtensions: 0,
 			NumServices:   1,
 		},

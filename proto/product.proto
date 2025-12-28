@@ -51,7 +51,18 @@ message GetProductRequest {
   string code = 3;
 }
 
+message SaveImageRequest {
+  string prod_id = 1;
+  string primary_image = 2;
+  repeated string secondary_images = 3;
+}
+
+message SaveImageResponse {
+  bool success = 1;
+}
+
 service ProductService {
   rpc ListProducts (ListProductsRequest) returns (ListProductsResponse);
   rpc GetProduct (GetProductRequest) returns (Product);
+  rpc SaveUrlImage (SaveImageRequest) returns (SaveImageResponse);
 }
