@@ -52,7 +52,7 @@ message GetProductRequest {
 }
 
 message SaveImageRequest {
-  string prod_id = 1;
+  int64 prod_id = 1;
   string primary_image = 2;
   repeated string secondary_images = 3;
 }
