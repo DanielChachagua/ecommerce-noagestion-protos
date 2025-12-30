@@ -567,6 +567,7 @@ func (x *SaveImageResponse) GetSuccess() bool {
 
 type ProductRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
+	ProductId     int64                  `protobuf:"varint,1,opt,name=product_id,json=productId,proto3" json:"product_id,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -599,6 +600,13 @@ func (x *ProductRequest) ProtoReflect() protoreflect.Message {
 // Deprecated: Use ProductRequest.ProtoReflect.Descriptor instead.
 func (*ProductRequest) Descriptor() ([]byte, []int) {
 	return file_product_proto_rawDescGZIP(), []int{7}
+}
+
+func (x *ProductRequest) GetProductId() int64 {
+	if x != nil {
+		return x.ProductId
+	}
+	return 0
 }
 
 var File_product_proto protoreflect.FileDescriptor
@@ -655,8 +663,10 @@ const file_product_proto_rawDesc = "" +
 	"\rprimary_image\x18\x02 \x01(\tR\fprimaryImage\x12)\n" +
 	"\x10secondary_images\x18\x03 \x03(\tR\x0fsecondaryImages\"-\n" +
 	"\x11SaveImageResponse\x12\x18\n" +
-	"\asuccess\x18\x01 \x01(\bR\asuccess\"\x10\n" +
-	"\x0eProductRequest2\x9d\x02\n" +
+	"\asuccess\x18\x01 \x01(\bR\asuccess\"/\n" +
+	"\x0eProductRequest\x12\x1d\n" +
+	"\n" +
+	"product_id\x18\x01 \x01(\x03R\tproductId2\x9d\x02\n" +
 	"\x0eProductService\x12K\n" +
 	"\fListProducts\x12\x1c.product.ListProductsRequest\x1a\x1d.product.ListProductsResponse\x12:\n" +
 	"\n" +

@@ -62,7 +62,9 @@ message SaveImageResponse {
   bool success = 1;
 }
 
-message ProductRequest{}
+message ProductRequest{
+  int64 product_id = 1;
+}
 
 service ProductService {
   rpc ListProducts (ListProductsRequest) returns (ListProductsResponse);
