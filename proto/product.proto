@@ -54,8 +54,10 @@ message GetProductRequest {
 
 message SaveImageRequest {
   int64 prod_id = 1;
-  string primary_image = 2;
+  optional string primary_image = 2;
   repeated string secondary_images = 3;
+  repeated string keep_secondaries = 4;
+  repeated string remove_secondaries = 5;
 }
 
 message SaveImageResponse {

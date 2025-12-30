@@ -462,12 +462,14 @@ func (x *GetProductRequest) GetCode() string {
 }
 
 type SaveImageRequest struct {
-	state           protoimpl.MessageState `protogen:"open.v1"`
-	ProdId          int64                  `protobuf:"varint,1,opt,name=prod_id,json=prodId,proto3" json:"prod_id,omitempty"`
-	PrimaryImage    string                 `protobuf:"bytes,2,opt,name=primary_image,json=primaryImage,proto3" json:"primary_image,omitempty"`
-	SecondaryImages []string               `protobuf:"bytes,3,rep,name=secondary_images,json=secondaryImages,proto3" json:"secondary_images,omitempty"`
-	unknownFields   protoimpl.UnknownFields
-	sizeCache       protoimpl.SizeCache
+	state             protoimpl.MessageState `protogen:"open.v1"`
+	ProdId            int64                  `protobuf:"varint,1,opt,name=prod_id,json=prodId,proto3" json:"prod_id,omitempty"`
+	PrimaryImage      *string                `protobuf:"bytes,2,opt,name=primary_image,json=primaryImage,proto3,oneof" json:"primary_image,omitempty"`
+	SecondaryImages   []string               `protobuf:"bytes,3,rep,name=secondary_images,json=secondaryImages,proto3" json:"secondary_images,omitempty"`
+	KeepSecondaries   []string               `protobuf:"bytes,4,rep,name=keep_secondaries,json=keepSecondaries,proto3" json:"keep_secondaries,omitempty"`
+	RemoveSecondaries []string               `protobuf:"bytes,5,rep,name=remove_secondaries,json=removeSecondaries,proto3" json:"remove_secondaries,omitempty"`
+	unknownFields     protoimpl.UnknownFields
+	sizeCache         protoimpl.SizeCache
 }
 
 func (x *SaveImageRequest) Reset() {
@@ -508,8 +510,8 @@ func (x *SaveImageRequest) GetProdId() int64 {
 }
 
 func (x *SaveImageRequest) GetPrimaryImage() string {
-	if x != nil {
-		return x.PrimaryImage
+	if x != nil && x.PrimaryImage != nil {
+		return *x.PrimaryImage
 	}
 	return ""
 }
@@ -517,6 +519,20 @@ func (x *SaveImageRequest) GetPrimaryImage() string {
 func (x *SaveImageRequest) GetSecondaryImages() []string {
 	if x != nil {
 		return x.SecondaryImages
+	}
+	return nil
+}
+
+func (x *SaveImageRequest) GetKeepSecondaries() []string {
+	if x != nil {
+		return x.KeepSecondaries
+	}
+	return nil
+}
+
+func (x *SaveImageRequest) GetRemoveSecondaries() []string {
+	if x != nil {
+		return x.RemoveSecondaries
 	}
 	return nil
 }
@@ -657,11 +673,14 @@ const file_product_proto_rawDesc = "" +
 	"\x05total\x18\x02 \x01(\x05R\x05total\x12\x1b\n" +
 	"\ttenant_id\x18\x03 \x01(\tR\btenantId\"'\n" +
 	"\x11GetProductRequest\x12\x12\n" +
-	"\x04code\x18\x03 \x01(\tR\x04code\"{\n" +
+	"\x04code\x18\x03 \x01(\tR\x04code\"\xec\x01\n" +
 	"\x10SaveImageRequest\x12\x17\n" +
-	"\aprod_id\x18\x01 \x01(\x03R\x06prodId\x12#\n" +
-	"\rprimary_image\x18\x02 \x01(\tR\fprimaryImage\x12)\n" +
-	"\x10secondary_images\x18\x03 \x03(\tR\x0fsecondaryImages\"-\n" +
+	"\aprod_id\x18\x01 \x01(\x03R\x06prodId\x12(\n" +
+	"\rprimary_image\x18\x02 \x01(\tH\x00R\fprimaryImage\x88\x01\x01\x12)\n" +
+	"\x10secondary_images\x18\x03 \x03(\tR\x0fsecondaryImages\x12)\n" +
+	"\x10keep_secondaries\x18\x04 \x03(\tR\x0fkeepSecondaries\x12-\n" +
+	"\x12remove_secondaries\x18\x05 \x03(\tR\x11removeSecondariesB\x10\n" +
+	"\x0e_primary_image\"-\n" +
 	"\x11SaveImageResponse\x12\x18\n" +
 	"\asuccess\x18\x01 \x01(\bR\asuccess\"/\n" +
 	"\x0eProductRequest\x12\x1d\n" +
@@ -729,6 +748,7 @@ func file_product_proto_init() {
 	file_product_proto_msgTypes[0].OneofWrappers = []any{}
 	file_product_proto_msgTypes[1].OneofWrappers = []any{}
 	file_product_proto_msgTypes[2].OneofWrappers = []any{}
+	file_product_proto_msgTypes[5].OneofWrappers = []any{}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
