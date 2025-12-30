@@ -19,9 +19,10 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	ProductService_ListProducts_FullMethodName = "/product.ProductService/ListProducts"
-	ProductService_GetProduct_FullMethodName   = "/product.ProductService/GetProduct"
-	ProductService_SaveUrlImage_FullMethodName = "/product.ProductService/SaveUrlImage"
+	ProductService_ListProducts_FullMethodName   = "/product.ProductService/ListProducts"
+	ProductService_GetProduct_FullMethodName     = "/product.ProductService/GetProduct"
+	ProductService_SaveUrlImage_FullMethodName   = "/product.ProductService/SaveUrlImage"
+	ProductService_GetProductByID_FullMethodName = "/product.ProductService/GetProductByID"
 )
 
 // ProductServiceClient is the client API for ProductService service.
@@ -31,6 +32,7 @@ type ProductServiceClient interface {
 	ListProducts(ctx context.Context, in *ListProductsRequest, opts ...grpc.CallOption) (*ListProductsResponse, error)
 	GetProduct(ctx context.Context, in *GetProductRequest, opts ...grpc.CallOption) (*Product, error)
 	SaveUrlImage(ctx context.Context, in *SaveImageRequest, opts ...grpc.CallOption) (*SaveImageResponse, error)
+	GetProductByID(ctx context.Context, in *ProductRequest, opts ...grpc.CallOption) (*Product, error)
 }
 
 type productServiceClient struct {
@@ -71,6 +73,16 @@ func (c *productServiceClient) SaveUrlImage(ctx context.Context, in *SaveImageRe
 	return out, nil
 }
 
+func (c *productServiceClient) GetProductByID(ctx context.Context, in *ProductRequest, opts ...grpc.CallOption) (*Product, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(Product)
+	err := c.cc.Invoke(ctx, ProductService_GetProductByID_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // ProductServiceServer is the server API for ProductService service.
 // All implementations must embed UnimplementedProductServiceServer
 // for forward compatibility.
@@ -78,6 +90,7 @@ type ProductServiceServer interface {
 	ListProducts(context.Context, *ListProductsRequest) (*ListProductsResponse, error)
 	GetProduct(context.Context, *GetProductRequest) (*Product, error)
 	SaveUrlImage(context.Context, *SaveImageRequest) (*SaveImageResponse, error)
+	GetProductByID(context.Context, *ProductRequest) (*Product, error)
 	mustEmbedUnimplementedProductServiceServer()
 }
 
@@ -96,6 +109,9 @@ func (UnimplementedProductServiceServer) GetProduct(context.Context, *GetProduct
 }
 func (UnimplementedProductServiceServer) SaveUrlImage(context.Context, *SaveImageRequest) (*SaveImageResponse, error) {
 	return nil, status.Error(codes.Unimplemented, "method SaveUrlImage not implemented")
+}
+func (UnimplementedProductServiceServer) GetProductByID(context.Context, *ProductRequest) (*Product, error) {
+	return nil, status.Error(codes.Unimplemented, "method GetProductByID not implemented")
 }
 func (UnimplementedProductServiceServer) mustEmbedUnimplementedProductServiceServer() {}
 func (UnimplementedProductServiceServer) testEmbeddedByValue()                        {}
@@ -172,6 +188,24 @@ func _ProductService_SaveUrlImage_Handler(srv interface{}, ctx context.Context, 
 	return interceptor(ctx, in, info, handler)
 }
 
+func _ProductService_GetProductByID_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ProductRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ProductServiceServer).GetProductByID(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ProductService_GetProductByID_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ProductServiceServer).GetProductByID(ctx, req.(*ProductRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // ProductService_ServiceDesc is the grpc.ServiceDesc for ProductService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -190,6 +224,10 @@ var ProductService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "SaveUrlImage",
 			Handler:    _ProductService_SaveUrlImage_Handler,
+		},
+		{
+			MethodName: "GetProductByID",
+			Handler:    _ProductService_GetProductByID_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

@@ -11,9 +11,10 @@ message Product {
   string name = 3;
   optional string description = 4;
   double price = 5;
-  repeated string url_image = 6;
-  float stock = 7;
-  category.Category category = 8;
+  optional string primary_image = 6;
+  repeated string secondary_images = 7;
+  float stock = 8;
+  category.Category category = 9;
 }
 
 message ProductDTO {
@@ -21,7 +22,7 @@ message ProductDTO {
   string code = 2;
   string name = 3;
   double price = 4;
-  string url_image = 5;
+  optional string primary_image = 5;
   float stock = 6;
   category.Category category = 7;
 }
@@ -61,8 +62,11 @@ message SaveImageResponse {
   bool success = 1;
 }
 
+message ProductRequest{}
+
 service ProductService {
   rpc ListProducts (ListProductsRequest) returns (ListProductsResponse);
   rpc GetProduct (GetProductRequest) returns (Product);
   rpc SaveUrlImage (SaveImageRequest) returns (SaveImageResponse);
+  rpc GetProductByID (ProductRequest) returns (Product);
 }
