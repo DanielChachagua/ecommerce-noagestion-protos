@@ -19,7 +19,8 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	TenantService_ListTenants_FullMethodName = "/tenant.TenantService/ListTenants"
+	TenantService_ListTenants_FullMethodName         = "/tenant.TenantService/ListTenants"
+	TenantService_TenantGetIdentifier_FullMethodName = "/tenant.TenantService/TenantGetIdentifier"
 )
 
 // TenantServiceClient is the client API for TenantService service.
@@ -27,6 +28,7 @@ const (
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type TenantServiceClient interface {
 	ListTenants(ctx context.Context, in *ListTenantsRequest, opts ...grpc.CallOption) (*ListTenantsResponse, error)
+	TenantGetIdentifier(ctx context.Context, in *TenantRequest, opts ...grpc.CallOption) (*TenantResponse, error)
 }
 
 type tenantServiceClient struct {
@@ -47,11 +49,22 @@ func (c *tenantServiceClient) ListTenants(ctx context.Context, in *ListTenantsRe
 	return out, nil
 }
 
+func (c *tenantServiceClient) TenantGetIdentifier(ctx context.Context, in *TenantRequest, opts ...grpc.CallOption) (*TenantResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(TenantResponse)
+	err := c.cc.Invoke(ctx, TenantService_TenantGetIdentifier_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // TenantServiceServer is the server API for TenantService service.
 // All implementations must embed UnimplementedTenantServiceServer
 // for forward compatibility.
 type TenantServiceServer interface {
 	ListTenants(context.Context, *ListTenantsRequest) (*ListTenantsResponse, error)
+	TenantGetIdentifier(context.Context, *TenantRequest) (*TenantResponse, error)
 	mustEmbedUnimplementedTenantServiceServer()
 }
 
@@ -64,6 +77,9 @@ type UnimplementedTenantServiceServer struct{}
 
 func (UnimplementedTenantServiceServer) ListTenants(context.Context, *ListTenantsRequest) (*ListTenantsResponse, error) {
 	return nil, status.Error(codes.Unimplemented, "method ListTenants not implemented")
+}
+func (UnimplementedTenantServiceServer) TenantGetIdentifier(context.Context, *TenantRequest) (*TenantResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method TenantGetIdentifier not implemented")
 }
 func (UnimplementedTenantServiceServer) mustEmbedUnimplementedTenantServiceServer() {}
 func (UnimplementedTenantServiceServer) testEmbeddedByValue()                       {}
@@ -104,6 +120,24 @@ func _TenantService_ListTenants_Handler(srv interface{}, ctx context.Context, de
 	return interceptor(ctx, in, info, handler)
 }
 
+func _TenantService_TenantGetIdentifier_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(TenantRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(TenantServiceServer).TenantGetIdentifier(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: TenantService_TenantGetIdentifier_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(TenantServiceServer).TenantGetIdentifier(ctx, req.(*TenantRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // TenantService_ServiceDesc is the grpc.ServiceDesc for TenantService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -114,6 +148,10 @@ var TenantService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "ListTenants",
 			Handler:    _TenantService_ListTenants_Handler,
+		},
+		{
+			MethodName: "TenantGetIdentifier",
+			Handler:    _TenantService_TenantGetIdentifier_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
