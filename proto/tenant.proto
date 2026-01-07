@@ -6,6 +6,16 @@ option go_package = "github.com/DanielChachagua/ecommerce-noagestion-protos/pb;p
 
 import "google/protobuf/timestamp.proto";
 
+message SettingTenant {
+  int64 id = 1;
+  string logo = 2;
+  string front_page = 3;
+  string title = 4;
+  string slogan = 5;
+  string primary_color = 6;
+  string secondary_color = 7;
+}
+
 message Tenant {
   string identifier = 1;
   bool is_active = 2;
@@ -19,6 +29,7 @@ message TenantResponse {
   string address = 4;
   string phone = 5;
   string email = 6;
+  SettingTenant setting_tenant = 7;
 }
 
 message TenantRequest {

@@ -22,6 +22,98 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
+type SettingTenant struct {
+	state          protoimpl.MessageState `protogen:"open.v1"`
+	Id             int64                  `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
+	Logo           string                 `protobuf:"bytes,2,opt,name=logo,proto3" json:"logo,omitempty"`
+	FrontPage      string                 `protobuf:"bytes,3,opt,name=front_page,json=frontPage,proto3" json:"front_page,omitempty"`
+	Title          string                 `protobuf:"bytes,4,opt,name=title,proto3" json:"title,omitempty"`
+	Slogan         string                 `protobuf:"bytes,5,opt,name=slogan,proto3" json:"slogan,omitempty"`
+	PrimaryColor   string                 `protobuf:"bytes,6,opt,name=primary_color,json=primaryColor,proto3" json:"primary_color,omitempty"`
+	SecondaryColor string                 `protobuf:"bytes,7,opt,name=secondary_color,json=secondaryColor,proto3" json:"secondary_color,omitempty"`
+	unknownFields  protoimpl.UnknownFields
+	sizeCache      protoimpl.SizeCache
+}
+
+func (x *SettingTenant) Reset() {
+	*x = SettingTenant{}
+	mi := &file_tenant_proto_msgTypes[0]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *SettingTenant) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*SettingTenant) ProtoMessage() {}
+
+func (x *SettingTenant) ProtoReflect() protoreflect.Message {
+	mi := &file_tenant_proto_msgTypes[0]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use SettingTenant.ProtoReflect.Descriptor instead.
+func (*SettingTenant) Descriptor() ([]byte, []int) {
+	return file_tenant_proto_rawDescGZIP(), []int{0}
+}
+
+func (x *SettingTenant) GetId() int64 {
+	if x != nil {
+		return x.Id
+	}
+	return 0
+}
+
+func (x *SettingTenant) GetLogo() string {
+	if x != nil {
+		return x.Logo
+	}
+	return ""
+}
+
+func (x *SettingTenant) GetFrontPage() string {
+	if x != nil {
+		return x.FrontPage
+	}
+	return ""
+}
+
+func (x *SettingTenant) GetTitle() string {
+	if x != nil {
+		return x.Title
+	}
+	return ""
+}
+
+func (x *SettingTenant) GetSlogan() string {
+	if x != nil {
+		return x.Slogan
+	}
+	return ""
+}
+
+func (x *SettingTenant) GetPrimaryColor() string {
+	if x != nil {
+		return x.PrimaryColor
+	}
+	return ""
+}
+
+func (x *SettingTenant) GetSecondaryColor() string {
+	if x != nil {
+		return x.SecondaryColor
+	}
+	return ""
+}
+
 type Tenant struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Identifier    string                 `protobuf:"bytes,1,opt,name=identifier,proto3" json:"identifier,omitempty"`
@@ -33,7 +125,7 @@ type Tenant struct {
 
 func (x *Tenant) Reset() {
 	*x = Tenant{}
-	mi := &file_tenant_proto_msgTypes[0]
+	mi := &file_tenant_proto_msgTypes[1]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -45,7 +137,7 @@ func (x *Tenant) String() string {
 func (*Tenant) ProtoMessage() {}
 
 func (x *Tenant) ProtoReflect() protoreflect.Message {
-	mi := &file_tenant_proto_msgTypes[0]
+	mi := &file_tenant_proto_msgTypes[1]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -58,7 +150,7 @@ func (x *Tenant) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Tenant.ProtoReflect.Descriptor instead.
 func (*Tenant) Descriptor() ([]byte, []int) {
-	return file_tenant_proto_rawDescGZIP(), []int{0}
+	return file_tenant_proto_rawDescGZIP(), []int{1}
 }
 
 func (x *Tenant) GetIdentifier() string {
@@ -90,13 +182,14 @@ type TenantResponse struct {
 	Address       string                 `protobuf:"bytes,4,opt,name=address,proto3" json:"address,omitempty"`
 	Phone         string                 `protobuf:"bytes,5,opt,name=phone,proto3" json:"phone,omitempty"`
 	Email         string                 `protobuf:"bytes,6,opt,name=email,proto3" json:"email,omitempty"`
+	SettingTenant *SettingTenant         `protobuf:"bytes,7,opt,name=setting_tenant,json=settingTenant,proto3" json:"setting_tenant,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
 func (x *TenantResponse) Reset() {
 	*x = TenantResponse{}
-	mi := &file_tenant_proto_msgTypes[1]
+	mi := &file_tenant_proto_msgTypes[2]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -108,7 +201,7 @@ func (x *TenantResponse) String() string {
 func (*TenantResponse) ProtoMessage() {}
 
 func (x *TenantResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_tenant_proto_msgTypes[1]
+	mi := &file_tenant_proto_msgTypes[2]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -121,7 +214,7 @@ func (x *TenantResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use TenantResponse.ProtoReflect.Descriptor instead.
 func (*TenantResponse) Descriptor() ([]byte, []int) {
-	return file_tenant_proto_rawDescGZIP(), []int{1}
+	return file_tenant_proto_rawDescGZIP(), []int{2}
 }
 
 func (x *TenantResponse) GetId() int64 {
@@ -166,6 +259,13 @@ func (x *TenantResponse) GetEmail() string {
 	return ""
 }
 
+func (x *TenantResponse) GetSettingTenant() *SettingTenant {
+	if x != nil {
+		return x.SettingTenant
+	}
+	return nil
+}
+
 type TenantRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Identifier    string                 `protobuf:"bytes,1,opt,name=identifier,proto3" json:"identifier,omitempty"`
@@ -175,7 +275,7 @@ type TenantRequest struct {
 
 func (x *TenantRequest) Reset() {
 	*x = TenantRequest{}
-	mi := &file_tenant_proto_msgTypes[2]
+	mi := &file_tenant_proto_msgTypes[3]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -187,7 +287,7 @@ func (x *TenantRequest) String() string {
 func (*TenantRequest) ProtoMessage() {}
 
 func (x *TenantRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_tenant_proto_msgTypes[2]
+	mi := &file_tenant_proto_msgTypes[3]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -200,7 +300,7 @@ func (x *TenantRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use TenantRequest.ProtoReflect.Descriptor instead.
 func (*TenantRequest) Descriptor() ([]byte, []int) {
-	return file_tenant_proto_rawDescGZIP(), []int{2}
+	return file_tenant_proto_rawDescGZIP(), []int{3}
 }
 
 func (x *TenantRequest) GetIdentifier() string {
@@ -218,7 +318,7 @@ type ListTenantsRequest struct {
 
 func (x *ListTenantsRequest) Reset() {
 	*x = ListTenantsRequest{}
-	mi := &file_tenant_proto_msgTypes[3]
+	mi := &file_tenant_proto_msgTypes[4]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -230,7 +330,7 @@ func (x *ListTenantsRequest) String() string {
 func (*ListTenantsRequest) ProtoMessage() {}
 
 func (x *ListTenantsRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_tenant_proto_msgTypes[3]
+	mi := &file_tenant_proto_msgTypes[4]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -243,7 +343,7 @@ func (x *ListTenantsRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListTenantsRequest.ProtoReflect.Descriptor instead.
 func (*ListTenantsRequest) Descriptor() ([]byte, []int) {
-	return file_tenant_proto_rawDescGZIP(), []int{3}
+	return file_tenant_proto_rawDescGZIP(), []int{4}
 }
 
 type ListTenantsResponse struct {
@@ -255,7 +355,7 @@ type ListTenantsResponse struct {
 
 func (x *ListTenantsResponse) Reset() {
 	*x = ListTenantsResponse{}
-	mi := &file_tenant_proto_msgTypes[4]
+	mi := &file_tenant_proto_msgTypes[5]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -267,7 +367,7 @@ func (x *ListTenantsResponse) String() string {
 func (*ListTenantsResponse) ProtoMessage() {}
 
 func (x *ListTenantsResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_tenant_proto_msgTypes[4]
+	mi := &file_tenant_proto_msgTypes[5]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -280,7 +380,7 @@ func (x *ListTenantsResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListTenantsResponse.ProtoReflect.Descriptor instead.
 func (*ListTenantsResponse) Descriptor() ([]byte, []int) {
-	return file_tenant_proto_rawDescGZIP(), []int{4}
+	return file_tenant_proto_rawDescGZIP(), []int{5}
 }
 
 func (x *ListTenantsResponse) GetTenants() []*Tenant {
@@ -294,7 +394,16 @@ var File_tenant_proto protoreflect.FileDescriptor
 
 const file_tenant_proto_rawDesc = "" +
 	"\n" +
-	"\ftenant.proto\x12\x06tenant\x1a\x1fgoogle/protobuf/timestamp.proto\"\x95\x01\n" +
+	"\ftenant.proto\x12\x06tenant\x1a\x1fgoogle/protobuf/timestamp.proto\"\xce\x01\n" +
+	"\rSettingTenant\x12\x0e\n" +
+	"\x02id\x18\x01 \x01(\x03R\x02id\x12\x12\n" +
+	"\x04logo\x18\x02 \x01(\tR\x04logo\x12\x1d\n" +
+	"\n" +
+	"front_page\x18\x03 \x01(\tR\tfrontPage\x12\x14\n" +
+	"\x05title\x18\x04 \x01(\tR\x05title\x12\x16\n" +
+	"\x06slogan\x18\x05 \x01(\tR\x06slogan\x12#\n" +
+	"\rprimary_color\x18\x06 \x01(\tR\fprimaryColor\x12'\n" +
+	"\x0fsecondary_color\x18\a \x01(\tR\x0esecondaryColor\"\x95\x01\n" +
 	"\x06Tenant\x12\x1e\n" +
 	"\n" +
 	"identifier\x18\x01 \x01(\tR\n" +
@@ -303,7 +412,7 @@ const file_tenant_proto_rawDesc = "" +
 	"\n" +
 	"expiration\x18\x03 \x01(\v2\x1a.google.protobuf.TimestampH\x00R\n" +
 	"expiration\x88\x01\x01B\r\n" +
-	"\v_expiration\"\x9a\x01\n" +
+	"\v_expiration\"\xd8\x01\n" +
 	"\x0eTenantResponse\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\x03R\x02id\x12\x12\n" +
 	"\x04name\x18\x02 \x01(\tR\x04name\x12\x1e\n" +
@@ -312,7 +421,8 @@ const file_tenant_proto_rawDesc = "" +
 	"identifier\x12\x18\n" +
 	"\aaddress\x18\x04 \x01(\tR\aaddress\x12\x14\n" +
 	"\x05phone\x18\x05 \x01(\tR\x05phone\x12\x14\n" +
-	"\x05email\x18\x06 \x01(\tR\x05email\"/\n" +
+	"\x05email\x18\x06 \x01(\tR\x05email\x12<\n" +
+	"\x0esetting_tenant\x18\a \x01(\v2\x15.tenant.SettingTenantR\rsettingTenant\"/\n" +
 	"\rTenantRequest\x12\x1e\n" +
 	"\n" +
 	"identifier\x18\x01 \x01(\tR\n" +
@@ -336,27 +446,29 @@ func file_tenant_proto_rawDescGZIP() []byte {
 	return file_tenant_proto_rawDescData
 }
 
-var file_tenant_proto_msgTypes = make([]protoimpl.MessageInfo, 5)
+var file_tenant_proto_msgTypes = make([]protoimpl.MessageInfo, 6)
 var file_tenant_proto_goTypes = []any{
-	(*Tenant)(nil),                // 0: tenant.Tenant
-	(*TenantResponse)(nil),        // 1: tenant.TenantResponse
-	(*TenantRequest)(nil),         // 2: tenant.TenantRequest
-	(*ListTenantsRequest)(nil),    // 3: tenant.ListTenantsRequest
-	(*ListTenantsResponse)(nil),   // 4: tenant.ListTenantsResponse
-	(*timestamppb.Timestamp)(nil), // 5: google.protobuf.Timestamp
+	(*SettingTenant)(nil),         // 0: tenant.SettingTenant
+	(*Tenant)(nil),                // 1: tenant.Tenant
+	(*TenantResponse)(nil),        // 2: tenant.TenantResponse
+	(*TenantRequest)(nil),         // 3: tenant.TenantRequest
+	(*ListTenantsRequest)(nil),    // 4: tenant.ListTenantsRequest
+	(*ListTenantsResponse)(nil),   // 5: tenant.ListTenantsResponse
+	(*timestamppb.Timestamp)(nil), // 6: google.protobuf.Timestamp
 }
 var file_tenant_proto_depIdxs = []int32{
-	5, // 0: tenant.Tenant.expiration:type_name -> google.protobuf.Timestamp
-	0, // 1: tenant.ListTenantsResponse.tenants:type_name -> tenant.Tenant
-	3, // 2: tenant.TenantService.ListTenants:input_type -> tenant.ListTenantsRequest
-	2, // 3: tenant.TenantService.TenantGetIdentifier:input_type -> tenant.TenantRequest
-	4, // 4: tenant.TenantService.ListTenants:output_type -> tenant.ListTenantsResponse
-	1, // 5: tenant.TenantService.TenantGetIdentifier:output_type -> tenant.TenantResponse
-	4, // [4:6] is the sub-list for method output_type
-	2, // [2:4] is the sub-list for method input_type
-	2, // [2:2] is the sub-list for extension type_name
-	2, // [2:2] is the sub-list for extension extendee
-	0, // [0:2] is the sub-list for field type_name
+	6, // 0: tenant.Tenant.expiration:type_name -> google.protobuf.Timestamp
+	0, // 1: tenant.TenantResponse.setting_tenant:type_name -> tenant.SettingTenant
+	1, // 2: tenant.ListTenantsResponse.tenants:type_name -> tenant.Tenant
+	4, // 3: tenant.TenantService.ListTenants:input_type -> tenant.ListTenantsRequest
+	3, // 4: tenant.TenantService.TenantGetIdentifier:input_type -> tenant.TenantRequest
+	5, // 5: tenant.TenantService.ListTenants:output_type -> tenant.ListTenantsResponse
+	2, // 6: tenant.TenantService.TenantGetIdentifier:output_type -> tenant.TenantResponse
+	5, // [5:7] is the sub-list for method output_type
+	3, // [3:5] is the sub-list for method input_type
+	3, // [3:3] is the sub-list for extension type_name
+	3, // [3:3] is the sub-list for extension extendee
+	0, // [0:3] is the sub-list for field type_name
 }
 
 func init() { file_tenant_proto_init() }
@@ -364,14 +476,14 @@ func file_tenant_proto_init() {
 	if File_tenant_proto != nil {
 		return
 	}
-	file_tenant_proto_msgTypes[0].OneofWrappers = []any{}
+	file_tenant_proto_msgTypes[1].OneofWrappers = []any{}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_tenant_proto_rawDesc), len(file_tenant_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   5,
+			NumMessages:   6,
 			NumExtensions: 0,
 			NumServices:   1,
 		},
