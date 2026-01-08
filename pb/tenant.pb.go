@@ -390,6 +390,102 @@ func (x *ListTenantsResponse) GetTenants() []*Tenant {
 	return nil
 }
 
+type TenantRequestImageSetting struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	LogoUuid      *string                `protobuf:"bytes,1,opt,name=logo_uuid,json=logoUuid,proto3,oneof" json:"logo_uuid,omitempty"`
+	FrontPageUuid *string                `protobuf:"bytes,2,opt,name=front_page_uuid,json=frontPageUuid,proto3,oneof" json:"front_page_uuid,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *TenantRequestImageSetting) Reset() {
+	*x = TenantRequestImageSetting{}
+	mi := &file_tenant_proto_msgTypes[6]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *TenantRequestImageSetting) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*TenantRequestImageSetting) ProtoMessage() {}
+
+func (x *TenantRequestImageSetting) ProtoReflect() protoreflect.Message {
+	mi := &file_tenant_proto_msgTypes[6]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use TenantRequestImageSetting.ProtoReflect.Descriptor instead.
+func (*TenantRequestImageSetting) Descriptor() ([]byte, []int) {
+	return file_tenant_proto_rawDescGZIP(), []int{6}
+}
+
+func (x *TenantRequestImageSetting) GetLogoUuid() string {
+	if x != nil && x.LogoUuid != nil {
+		return *x.LogoUuid
+	}
+	return ""
+}
+
+func (x *TenantRequestImageSetting) GetFrontPageUuid() string {
+	if x != nil && x.FrontPageUuid != nil {
+		return *x.FrontPageUuid
+	}
+	return ""
+}
+
+type TenantUpdateImageResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Success       bool                   `protobuf:"varint,1,opt,name=success,proto3" json:"success,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *TenantUpdateImageResponse) Reset() {
+	*x = TenantUpdateImageResponse{}
+	mi := &file_tenant_proto_msgTypes[7]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *TenantUpdateImageResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*TenantUpdateImageResponse) ProtoMessage() {}
+
+func (x *TenantUpdateImageResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_tenant_proto_msgTypes[7]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use TenantUpdateImageResponse.ProtoReflect.Descriptor instead.
+func (*TenantUpdateImageResponse) Descriptor() ([]byte, []int) {
+	return file_tenant_proto_rawDescGZIP(), []int{7}
+}
+
+func (x *TenantUpdateImageResponse) GetSuccess() bool {
+	if x != nil {
+		return x.Success
+	}
+	return false
+}
+
 var File_tenant_proto protoreflect.FileDescriptor
 
 const file_tenant_proto_rawDesc = "" +
@@ -429,10 +525,19 @@ const file_tenant_proto_rawDesc = "" +
 	"identifier\"\x14\n" +
 	"\x12ListTenantsRequest\"?\n" +
 	"\x13ListTenantsResponse\x12(\n" +
-	"\atenants\x18\x01 \x03(\v2\x0e.tenant.TenantR\atenants2\x9d\x01\n" +
+	"\atenants\x18\x01 \x03(\v2\x0e.tenant.TenantR\atenants\"\x8c\x01\n" +
+	"\x19TenantRequestImageSetting\x12 \n" +
+	"\tlogo_uuid\x18\x01 \x01(\tH\x00R\blogoUuid\x88\x01\x01\x12+\n" +
+	"\x0ffront_page_uuid\x18\x02 \x01(\tH\x01R\rfrontPageUuid\x88\x01\x01B\f\n" +
+	"\n" +
+	"_logo_uuidB\x12\n" +
+	"\x10_front_page_uuid\"5\n" +
+	"\x19TenantUpdateImageResponse\x12\x18\n" +
+	"\asuccess\x18\x01 \x01(\bR\asuccess2\xff\x01\n" +
 	"\rTenantService\x12F\n" +
 	"\vListTenants\x12\x1a.tenant.ListTenantsRequest\x1a\x1b.tenant.ListTenantsResponse\x12D\n" +
-	"\x13TenantGetIdentifier\x12\x15.tenant.TenantRequest\x1a\x16.tenant.TenantResponseB>Z<github.com/DanielChachagua/ecommerce-noagestion-protos/pb;pbb\x06proto3"
+	"\x13TenantGetIdentifier\x12\x15.tenant.TenantRequest\x1a\x16.tenant.TenantResponse\x12`\n" +
+	"\x18TenantUpdateImageSetting\x12!.tenant.TenantRequestImageSetting\x1a!.tenant.TenantUpdateImageResponseB>Z<github.com/DanielChachagua/ecommerce-noagestion-protos/pb;pbb\x06proto3"
 
 var (
 	file_tenant_proto_rawDescOnce sync.Once
@@ -446,26 +551,30 @@ func file_tenant_proto_rawDescGZIP() []byte {
 	return file_tenant_proto_rawDescData
 }
 
-var file_tenant_proto_msgTypes = make([]protoimpl.MessageInfo, 6)
+var file_tenant_proto_msgTypes = make([]protoimpl.MessageInfo, 8)
 var file_tenant_proto_goTypes = []any{
-	(*SettingTenant)(nil),         // 0: tenant.SettingTenant
-	(*Tenant)(nil),                // 1: tenant.Tenant
-	(*TenantResponse)(nil),        // 2: tenant.TenantResponse
-	(*TenantRequest)(nil),         // 3: tenant.TenantRequest
-	(*ListTenantsRequest)(nil),    // 4: tenant.ListTenantsRequest
-	(*ListTenantsResponse)(nil),   // 5: tenant.ListTenantsResponse
-	(*timestamppb.Timestamp)(nil), // 6: google.protobuf.Timestamp
+	(*SettingTenant)(nil),             // 0: tenant.SettingTenant
+	(*Tenant)(nil),                    // 1: tenant.Tenant
+	(*TenantResponse)(nil),            // 2: tenant.TenantResponse
+	(*TenantRequest)(nil),             // 3: tenant.TenantRequest
+	(*ListTenantsRequest)(nil),        // 4: tenant.ListTenantsRequest
+	(*ListTenantsResponse)(nil),       // 5: tenant.ListTenantsResponse
+	(*TenantRequestImageSetting)(nil), // 6: tenant.TenantRequestImageSetting
+	(*TenantUpdateImageResponse)(nil), // 7: tenant.TenantUpdateImageResponse
+	(*timestamppb.Timestamp)(nil),     // 8: google.protobuf.Timestamp
 }
 var file_tenant_proto_depIdxs = []int32{
-	6, // 0: tenant.Tenant.expiration:type_name -> google.protobuf.Timestamp
+	8, // 0: tenant.Tenant.expiration:type_name -> google.protobuf.Timestamp
 	0, // 1: tenant.TenantResponse.setting_tenant:type_name -> tenant.SettingTenant
 	1, // 2: tenant.ListTenantsResponse.tenants:type_name -> tenant.Tenant
 	4, // 3: tenant.TenantService.ListTenants:input_type -> tenant.ListTenantsRequest
 	3, // 4: tenant.TenantService.TenantGetIdentifier:input_type -> tenant.TenantRequest
-	5, // 5: tenant.TenantService.ListTenants:output_type -> tenant.ListTenantsResponse
-	2, // 6: tenant.TenantService.TenantGetIdentifier:output_type -> tenant.TenantResponse
-	5, // [5:7] is the sub-list for method output_type
-	3, // [3:5] is the sub-list for method input_type
+	6, // 5: tenant.TenantService.TenantUpdateImageSetting:input_type -> tenant.TenantRequestImageSetting
+	5, // 6: tenant.TenantService.ListTenants:output_type -> tenant.ListTenantsResponse
+	2, // 7: tenant.TenantService.TenantGetIdentifier:output_type -> tenant.TenantResponse
+	7, // 8: tenant.TenantService.TenantUpdateImageSetting:output_type -> tenant.TenantUpdateImageResponse
+	6, // [6:9] is the sub-list for method output_type
+	3, // [3:6] is the sub-list for method input_type
 	3, // [3:3] is the sub-list for extension type_name
 	3, // [3:3] is the sub-list for extension extendee
 	0, // [0:3] is the sub-list for field type_name
@@ -477,13 +586,14 @@ func file_tenant_proto_init() {
 		return
 	}
 	file_tenant_proto_msgTypes[1].OneofWrappers = []any{}
+	file_tenant_proto_msgTypes[6].OneofWrappers = []any{}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_tenant_proto_rawDesc), len(file_tenant_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   6,
+			NumMessages:   8,
 			NumExtensions: 0,
 			NumServices:   1,
 		},

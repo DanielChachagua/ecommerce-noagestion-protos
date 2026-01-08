@@ -19,8 +19,9 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	TenantService_ListTenants_FullMethodName         = "/tenant.TenantService/ListTenants"
-	TenantService_TenantGetIdentifier_FullMethodName = "/tenant.TenantService/TenantGetIdentifier"
+	TenantService_ListTenants_FullMethodName              = "/tenant.TenantService/ListTenants"
+	TenantService_TenantGetIdentifier_FullMethodName      = "/tenant.TenantService/TenantGetIdentifier"
+	TenantService_TenantUpdateImageSetting_FullMethodName = "/tenant.TenantService/TenantUpdateImageSetting"
 )
 
 // TenantServiceClient is the client API for TenantService service.
@@ -29,6 +30,7 @@ const (
 type TenantServiceClient interface {
 	ListTenants(ctx context.Context, in *ListTenantsRequest, opts ...grpc.CallOption) (*ListTenantsResponse, error)
 	TenantGetIdentifier(ctx context.Context, in *TenantRequest, opts ...grpc.CallOption) (*TenantResponse, error)
+	TenantUpdateImageSetting(ctx context.Context, in *TenantRequestImageSetting, opts ...grpc.CallOption) (*TenantUpdateImageResponse, error)
 }
 
 type tenantServiceClient struct {
@@ -59,12 +61,23 @@ func (c *tenantServiceClient) TenantGetIdentifier(ctx context.Context, in *Tenan
 	return out, nil
 }
 
+func (c *tenantServiceClient) TenantUpdateImageSetting(ctx context.Context, in *TenantRequestImageSetting, opts ...grpc.CallOption) (*TenantUpdateImageResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(TenantUpdateImageResponse)
+	err := c.cc.Invoke(ctx, TenantService_TenantUpdateImageSetting_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // TenantServiceServer is the server API for TenantService service.
 // All implementations must embed UnimplementedTenantServiceServer
 // for forward compatibility.
 type TenantServiceServer interface {
 	ListTenants(context.Context, *ListTenantsRequest) (*ListTenantsResponse, error)
 	TenantGetIdentifier(context.Context, *TenantRequest) (*TenantResponse, error)
+	TenantUpdateImageSetting(context.Context, *TenantRequestImageSetting) (*TenantUpdateImageResponse, error)
 	mustEmbedUnimplementedTenantServiceServer()
 }
 
@@ -80,6 +93,9 @@ func (UnimplementedTenantServiceServer) ListTenants(context.Context, *ListTenant
 }
 func (UnimplementedTenantServiceServer) TenantGetIdentifier(context.Context, *TenantRequest) (*TenantResponse, error) {
 	return nil, status.Error(codes.Unimplemented, "method TenantGetIdentifier not implemented")
+}
+func (UnimplementedTenantServiceServer) TenantUpdateImageSetting(context.Context, *TenantRequestImageSetting) (*TenantUpdateImageResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method TenantUpdateImageSetting not implemented")
 }
 func (UnimplementedTenantServiceServer) mustEmbedUnimplementedTenantServiceServer() {}
 func (UnimplementedTenantServiceServer) testEmbeddedByValue()                       {}
@@ -138,6 +154,24 @@ func _TenantService_TenantGetIdentifier_Handler(srv interface{}, ctx context.Con
 	return interceptor(ctx, in, info, handler)
 }
 
+func _TenantService_TenantUpdateImageSetting_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(TenantRequestImageSetting)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(TenantServiceServer).TenantUpdateImageSetting(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: TenantService_TenantUpdateImageSetting_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(TenantServiceServer).TenantUpdateImageSetting(ctx, req.(*TenantRequestImageSetting))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // TenantService_ServiceDesc is the grpc.ServiceDesc for TenantService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -152,6 +186,10 @@ var TenantService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "TenantGetIdentifier",
 			Handler:    _TenantService_TenantGetIdentifier_Handler,
+		},
+		{
+			MethodName: "TenantUpdateImageSetting",
+			Handler:    _TenantService_TenantUpdateImageSetting_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

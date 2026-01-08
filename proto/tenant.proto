@@ -43,7 +43,17 @@ message ListTenantsResponse {
   repeated Tenant tenants = 1;
 }
 
+message TenantRequestImageSetting {
+  optional string logo_uuid = 1;
+  optional string front_page_uuid = 2; 
+}
+
+message TenantUpdateImageResponse {
+  bool success = 1;
+}
+
 service TenantService {
   rpc ListTenants (ListTenantsRequest) returns (ListTenantsResponse);
   rpc TenantGetIdentifier (TenantRequest) returns (TenantResponse);
+  rpc TenantUpdateImageSetting(TenantRequestImageSetting) returns (TenantUpdateImageResponse); 
 }
