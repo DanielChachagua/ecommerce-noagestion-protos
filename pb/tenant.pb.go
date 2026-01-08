@@ -391,11 +391,12 @@ func (x *ListTenantsResponse) GetTenants() []*Tenant {
 }
 
 type TenantRequestImageSetting struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	LogoUuid      *string                `protobuf:"bytes,1,opt,name=logo_uuid,json=logoUuid,proto3,oneof" json:"logo_uuid,omitempty"`
-	FrontPageUuid *string                `protobuf:"bytes,2,opt,name=front_page_uuid,json=frontPageUuid,proto3,oneof" json:"front_page_uuid,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
+	state            protoimpl.MessageState `protogen:"open.v1"`
+	LogoUuid         *string                `protobuf:"bytes,1,opt,name=logo_uuid,json=logoUuid,proto3,oneof" json:"logo_uuid,omitempty"`
+	FrontPageUuid    *string                `protobuf:"bytes,2,opt,name=front_page_uuid,json=frontPageUuid,proto3,oneof" json:"front_page_uuid,omitempty"`
+	TenantIdentifier string                 `protobuf:"bytes,3,opt,name=tenant_identifier,json=tenantIdentifier,proto3" json:"tenant_identifier,omitempty"`
+	unknownFields    protoimpl.UnknownFields
+	sizeCache        protoimpl.SizeCache
 }
 
 func (x *TenantRequestImageSetting) Reset() {
@@ -438,6 +439,13 @@ func (x *TenantRequestImageSetting) GetLogoUuid() string {
 func (x *TenantRequestImageSetting) GetFrontPageUuid() string {
 	if x != nil && x.FrontPageUuid != nil {
 		return *x.FrontPageUuid
+	}
+	return ""
+}
+
+func (x *TenantRequestImageSetting) GetTenantIdentifier() string {
+	if x != nil {
+		return x.TenantIdentifier
 	}
 	return ""
 }
@@ -533,10 +541,11 @@ const file_tenant_proto_rawDesc = "" +
 	"identifier\"\x14\n" +
 	"\x12ListTenantsRequest\"?\n" +
 	"\x13ListTenantsResponse\x12(\n" +
-	"\atenants\x18\x01 \x03(\v2\x0e.tenant.TenantR\atenants\"\x8c\x01\n" +
+	"\atenants\x18\x01 \x03(\v2\x0e.tenant.TenantR\atenants\"\xb9\x01\n" +
 	"\x19TenantRequestImageSetting\x12 \n" +
 	"\tlogo_uuid\x18\x01 \x01(\tH\x00R\blogoUuid\x88\x01\x01\x12+\n" +
-	"\x0ffront_page_uuid\x18\x02 \x01(\tH\x01R\rfrontPageUuid\x88\x01\x01B\f\n" +
+	"\x0ffront_page_uuid\x18\x02 \x01(\tH\x01R\rfrontPageUuid\x88\x01\x01\x12+\n" +
+	"\x11tenant_identifier\x18\x03 \x01(\tR\x10tenantIdentifierB\f\n" +
 	"\n" +
 	"_logo_uuidB\x12\n" +
 	"\x10_front_page_uuid\"\x8c\x01\n" +

@@ -46,6 +46,7 @@ message ListTenantsResponse {
 message TenantRequestImageSetting {
   optional string logo_uuid = 1;
   optional string front_page_uuid = 2; 
+  string tenant_identifier = 3;
 }
 
 message TenantUpdateImageResponse {
