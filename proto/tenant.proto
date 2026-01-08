@@ -49,7 +49,8 @@ message TenantRequestImageSetting {
 }
 
 message TenantUpdateImageResponse {
-  bool success = 1;
+  optional string logo_uuid = 1;
+  optional string front_page_uuid = 2; 
 }
 
 service TenantService {

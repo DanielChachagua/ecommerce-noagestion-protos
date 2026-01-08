@@ -444,7 +444,8 @@ func (x *TenantRequestImageSetting) GetFrontPageUuid() string {
 
 type TenantUpdateImageResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Success       bool                   `protobuf:"varint,1,opt,name=success,proto3" json:"success,omitempty"`
+	LogoUuid      *string                `protobuf:"bytes,1,opt,name=logo_uuid,json=logoUuid,proto3,oneof" json:"logo_uuid,omitempty"`
+	FrontPageUuid *string                `protobuf:"bytes,2,opt,name=front_page_uuid,json=frontPageUuid,proto3,oneof" json:"front_page_uuid,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -479,11 +480,18 @@ func (*TenantUpdateImageResponse) Descriptor() ([]byte, []int) {
 	return file_tenant_proto_rawDescGZIP(), []int{7}
 }
 
-func (x *TenantUpdateImageResponse) GetSuccess() bool {
-	if x != nil {
-		return x.Success
+func (x *TenantUpdateImageResponse) GetLogoUuid() string {
+	if x != nil && x.LogoUuid != nil {
+		return *x.LogoUuid
 	}
-	return false
+	return ""
+}
+
+func (x *TenantUpdateImageResponse) GetFrontPageUuid() string {
+	if x != nil && x.FrontPageUuid != nil {
+		return *x.FrontPageUuid
+	}
+	return ""
 }
 
 var File_tenant_proto protoreflect.FileDescriptor
@@ -531,9 +539,13 @@ const file_tenant_proto_rawDesc = "" +
 	"\x0ffront_page_uuid\x18\x02 \x01(\tH\x01R\rfrontPageUuid\x88\x01\x01B\f\n" +
 	"\n" +
 	"_logo_uuidB\x12\n" +
-	"\x10_front_page_uuid\"5\n" +
-	"\x19TenantUpdateImageResponse\x12\x18\n" +
-	"\asuccess\x18\x01 \x01(\bR\asuccess2\xff\x01\n" +
+	"\x10_front_page_uuid\"\x8c\x01\n" +
+	"\x19TenantUpdateImageResponse\x12 \n" +
+	"\tlogo_uuid\x18\x01 \x01(\tH\x00R\blogoUuid\x88\x01\x01\x12+\n" +
+	"\x0ffront_page_uuid\x18\x02 \x01(\tH\x01R\rfrontPageUuid\x88\x01\x01B\f\n" +
+	"\n" +
+	"_logo_uuidB\x12\n" +
+	"\x10_front_page_uuid2\xff\x01\n" +
 	"\rTenantService\x12F\n" +
 	"\vListTenants\x12\x1a.tenant.ListTenantsRequest\x1a\x1b.tenant.ListTenantsResponse\x12D\n" +
 	"\x13TenantGetIdentifier\x12\x15.tenant.TenantRequest\x1a\x16.tenant.TenantResponse\x12`\n" +
@@ -587,6 +599,7 @@ func file_tenant_proto_init() {
 	}
 	file_tenant_proto_msgTypes[1].OneofWrappers = []any{}
 	file_tenant_proto_msgTypes[6].OneofWrappers = []any{}
+	file_tenant_proto_msgTypes[7].OneofWrappers = []any{}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
