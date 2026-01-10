@@ -1,0 +1,7 @@
+syntax = "proto3";
+
+package mp;
+
+option go_package = "github.com/DanielChachagua/ecommerce-noagestion-protos/pb;pb";
+
+service MPService {}
