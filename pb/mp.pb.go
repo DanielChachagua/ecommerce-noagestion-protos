@@ -25,7 +25,7 @@ type DataInfoPay struct {
 	state              protoimpl.MessageState `protogen:"open.v1"`
 	DateApproved       string                 `protobuf:"bytes,1,opt,name=date_approved,json=dateApproved,proto3" json:"date_approved,omitempty"`
 	DateCreated        string                 `protobuf:"bytes,2,opt,name=date_created,json=dateCreated,proto3" json:"date_created,omitempty"`
-	Id                 float64                `protobuf:"fixed64,3,opt,name=id,proto3" json:"id,omitempty"`
+	Id                 string                 `protobuf:"bytes,3,opt,name=id,proto3" json:"id,omitempty"`
 	Status             string                 `protobuf:"bytes,4,opt,name=status,proto3" json:"status,omitempty"`
 	StatusDetail       string                 `protobuf:"bytes,5,opt,name=status_detail,json=statusDetail,proto3" json:"status_detail,omitempty"`
 	TransactionAmount  float64                `protobuf:"fixed64,6,opt,name=transaction_amount,json=transactionAmount,proto3" json:"transaction_amount,omitempty"`
@@ -86,11 +86,11 @@ func (x *DataInfoPay) GetDateCreated() string {
 	return ""
 }
 
-func (x *DataInfoPay) GetId() float64 {
+func (x *DataInfoPay) GetId() string {
 	if x != nil {
 		return x.Id
 	}
-	return 0
+	return ""
 }
 
 func (x *DataInfoPay) GetStatus() string {
@@ -535,7 +535,7 @@ const file_mp_proto_rawDesc = "" +
 	"\vDataInfoPay\x12#\n" +
 	"\rdate_approved\x18\x01 \x01(\tR\fdateApproved\x12!\n" +
 	"\fdate_created\x18\x02 \x01(\tR\vdateCreated\x12\x0e\n" +
-	"\x02id\x18\x03 \x01(\x01R\x02id\x12\x16\n" +
+	"\x02id\x18\x03 \x01(\tR\x02id\x12\x16\n" +
 	"\x06status\x18\x04 \x01(\tR\x06status\x12#\n" +
 	"\rstatus_detail\x18\x05 \x01(\tR\fstatusDetail\x12-\n" +
 	"\x12transaction_amount\x18\x06 \x01(\x01R\x11transactionAmount\x12G\n" +

@@ -7,7 +7,7 @@ option go_package = "github.com/DanielChachagua/ecommerce-noagestion-protos/pb;p
 message DataInfoPay {
   string date_approved = 1;
   string date_created = 2;
-  double id = 3; 
+  string id = 3; 
   string status = 4;
   string status_detail = 5;
   double transaction_amount = 6;
