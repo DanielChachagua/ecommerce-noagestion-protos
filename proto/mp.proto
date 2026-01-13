@@ -21,6 +21,7 @@ message DataInfoPay {
   string operation_type = 11;
   Metadata metadata = 12;
   string message = 13;
+  string external_reference = 14;
 }
 
 message PayerInfo {

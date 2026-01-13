@@ -31,14 +31,15 @@ type DataInfoPay struct {
 	TransactionAmount  float64                `protobuf:"fixed64,6,opt,name=transaction_amount,json=transactionAmount,proto3" json:"transaction_amount,omitempty"`
 	TransactionDetails *TransactionDetails    `protobuf:"bytes,7,opt,name=transaction_details,json=transactionDetails,proto3" json:"transaction_details,omitempty"`
 	// Como no hay structs anónimos, creamos un mensaje específico
-	AdditionalInfo *AdditionalInfo `protobuf:"bytes,8,opt,name=additional_info,json=additionalInfo,proto3" json:"additional_info,omitempty"`
-	PaymentMethod  *PaymentMethod  `protobuf:"bytes,9,opt,name=payment_method,json=paymentMethod,proto3" json:"payment_method,omitempty"`
-	Payer          *PayerInfo      `protobuf:"bytes,10,opt,name=payer,proto3" json:"payer,omitempty"`
-	OperationType  string          `protobuf:"bytes,11,opt,name=operation_type,json=operationType,proto3" json:"operation_type,omitempty"`
-	Metadata       *Metadata       `protobuf:"bytes,12,opt,name=metadata,proto3" json:"metadata,omitempty"`
-	Message        string          `protobuf:"bytes,13,opt,name=message,proto3" json:"message,omitempty"`
-	unknownFields  protoimpl.UnknownFields
-	sizeCache      protoimpl.SizeCache
+	AdditionalInfo    *AdditionalInfo `protobuf:"bytes,8,opt,name=additional_info,json=additionalInfo,proto3" json:"additional_info,omitempty"`
+	PaymentMethod     *PaymentMethod  `protobuf:"bytes,9,opt,name=payment_method,json=paymentMethod,proto3" json:"payment_method,omitempty"`
+	Payer             *PayerInfo      `protobuf:"bytes,10,opt,name=payer,proto3" json:"payer,omitempty"`
+	OperationType     string          `protobuf:"bytes,11,opt,name=operation_type,json=operationType,proto3" json:"operation_type,omitempty"`
+	Metadata          *Metadata       `protobuf:"bytes,12,opt,name=metadata,proto3" json:"metadata,omitempty"`
+	Message           string          `protobuf:"bytes,13,opt,name=message,proto3" json:"message,omitempty"`
+	ExternalReference string          `protobuf:"bytes,14,opt,name=external_reference,json=externalReference,proto3" json:"external_reference,omitempty"`
+	unknownFields     protoimpl.UnknownFields
+	sizeCache         protoimpl.SizeCache
 }
 
 func (x *DataInfoPay) Reset() {
@@ -158,6 +159,13 @@ func (x *DataInfoPay) GetMetadata() *Metadata {
 func (x *DataInfoPay) GetMessage() string {
 	if x != nil {
 		return x.Message
+	}
+	return ""
+}
+
+func (x *DataInfoPay) GetExternalReference() string {
+	if x != nil {
+		return x.ExternalReference
 	}
 	return ""
 }
@@ -523,7 +531,7 @@ var File_mp_proto protoreflect.FileDescriptor
 
 const file_mp_proto_rawDesc = "" +
 	"\n" +
-	"\bmp.proto\x12\x02mp\"\xa1\x04\n" +
+	"\bmp.proto\x12\x02mp\"\xd0\x04\n" +
 	"\vDataInfoPay\x12#\n" +
 	"\rdate_approved\x18\x01 \x01(\tR\fdateApproved\x12!\n" +
 	"\fdate_created\x18\x02 \x01(\tR\vdateCreated\x12\x0e\n" +
@@ -538,7 +546,8 @@ const file_mp_proto_rawDesc = "" +
 	" \x01(\v2\r.mp.PayerInfoR\x05payer\x12%\n" +
 	"\x0eoperation_type\x18\v \x01(\tR\roperationType\x12(\n" +
 	"\bmetadata\x18\f \x01(\v2\f.mp.MetadataR\bmetadata\x12\x18\n" +
-	"\amessage\x18\r \x01(\tR\amessage\"]\n" +
+	"\amessage\x18\r \x01(\tR\amessage\x12-\n" +
+	"\x12external_reference\x18\x0e \x01(\tR\x11externalReference\"]\n" +
 	"\tPayerInfo\x12\x1d\n" +
 	"\n" +
 	"first_name\x18\x01 \x01(\tR\tfirstName\x12\x1b\n" +
