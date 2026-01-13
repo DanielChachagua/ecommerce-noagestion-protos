@@ -7,7 +7,10 @@
 package pb
 
 import (
+	context "context"
 	grpc "google.golang.org/grpc"
+	codes "google.golang.org/grpc/codes"
+	status "google.golang.org/grpc/status"
 )
 
 // This is a compile-time assertion to ensure that this generated file
@@ -15,10 +18,15 @@ import (
 // Requires gRPC-Go v1.64.0 or later.
 const _ = grpc.SupportPackageIsVersion9
 
+const (
+	MPService_SyncPurchasePayment_FullMethodName = "/mp.MPService/SyncPurchasePayment"
+)
+
 // MPServiceClient is the client API for MPService service.
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type MPServiceClient interface {
+	SyncPurchasePayment(ctx context.Context, in *DataInfoPay, opts ...grpc.CallOption) (*DataInfoPayResponse, error)
 }
 
 type mPServiceClient struct {
@@ -29,10 +37,21 @@ func NewMPServiceClient(cc grpc.ClientConnInterface) MPServiceClient {
 	return &mPServiceClient{cc}
 }
 
+func (c *mPServiceClient) SyncPurchasePayment(ctx context.Context, in *DataInfoPay, opts ...grpc.CallOption) (*DataInfoPayResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(DataInfoPayResponse)
+	err := c.cc.Invoke(ctx, MPService_SyncPurchasePayment_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // MPServiceServer is the server API for MPService service.
 // All implementations must embed UnimplementedMPServiceServer
 // for forward compatibility.
 type MPServiceServer interface {
+	SyncPurchasePayment(context.Context, *DataInfoPay) (*DataInfoPayResponse, error)
 	mustEmbedUnimplementedMPServiceServer()
 }
 
@@ -43,6 +62,9 @@ type MPServiceServer interface {
 // pointer dereference when methods are called.
 type UnimplementedMPServiceServer struct{}
 
+func (UnimplementedMPServiceServer) SyncPurchasePayment(context.Context, *DataInfoPay) (*DataInfoPayResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method SyncPurchasePayment not implemented")
+}
 func (UnimplementedMPServiceServer) mustEmbedUnimplementedMPServiceServer() {}
 func (UnimplementedMPServiceServer) testEmbeddedByValue()                   {}
 
@@ -64,13 +86,36 @@ func RegisterMPServiceServer(s grpc.ServiceRegistrar, srv MPServiceServer) {
 	s.RegisterService(&MPService_ServiceDesc, srv)
 }
 
+func _MPService_SyncPurchasePayment_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DataInfoPay)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(MPServiceServer).SyncPurchasePayment(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: MPService_SyncPurchasePayment_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(MPServiceServer).SyncPurchasePayment(ctx, req.(*DataInfoPay))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // MPService_ServiceDesc is the grpc.ServiceDesc for MPService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
 var MPService_ServiceDesc = grpc.ServiceDesc{
 	ServiceName: "mp.MPService",
 	HandlerType: (*MPServiceServer)(nil),
-	Methods:     []grpc.MethodDesc{},
-	Streams:     []grpc.StreamDesc{},
-	Metadata:    "mp.proto",
+	Methods: []grpc.MethodDesc{
+		{
+			MethodName: "SyncPurchasePayment",
+			Handler:    _MPService_SyncPurchasePayment_Handler,
+		},
+	},
+	Streams:  []grpc.StreamDesc{},
+	Metadata: "mp.proto",
 }

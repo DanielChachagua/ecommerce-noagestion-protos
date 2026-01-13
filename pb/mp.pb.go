@@ -10,6 +10,7 @@ import (
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	reflect "reflect"
+	sync "sync"
 	unsafe "unsafe"
 )
 
@@ -20,20 +21,587 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
+type DataInfoPay struct {
+	state              protoimpl.MessageState `protogen:"open.v1"`
+	DateApproved       string                 `protobuf:"bytes,1,opt,name=date_approved,json=dateApproved,proto3" json:"date_approved,omitempty"`
+	DateCreated        string                 `protobuf:"bytes,2,opt,name=date_created,json=dateCreated,proto3" json:"date_created,omitempty"`
+	Id                 float64                `protobuf:"fixed64,3,opt,name=id,proto3" json:"id,omitempty"`
+	Status             string                 `protobuf:"bytes,4,opt,name=status,proto3" json:"status,omitempty"`
+	StatusDetail       string                 `protobuf:"bytes,5,opt,name=status_detail,json=statusDetail,proto3" json:"status_detail,omitempty"`
+	TransactionAmount  float64                `protobuf:"fixed64,6,opt,name=transaction_amount,json=transactionAmount,proto3" json:"transaction_amount,omitempty"`
+	TransactionDetails *TransactionDetails    `protobuf:"bytes,7,opt,name=transaction_details,json=transactionDetails,proto3" json:"transaction_details,omitempty"`
+	// Como no hay structs anónimos, creamos un mensaje específico
+	AdditionalInfo *AdditionalInfo `protobuf:"bytes,8,opt,name=additional_info,json=additionalInfo,proto3" json:"additional_info,omitempty"`
+	PaymentMethod  *PaymentMethod  `protobuf:"bytes,9,opt,name=payment_method,json=paymentMethod,proto3" json:"payment_method,omitempty"`
+	Payer          *PayerInfo      `protobuf:"bytes,10,opt,name=payer,proto3" json:"payer,omitempty"`
+	OperationType  string          `protobuf:"bytes,11,opt,name=operation_type,json=operationType,proto3" json:"operation_type,omitempty"`
+	Metadata       *Metadata       `protobuf:"bytes,12,opt,name=metadata,proto3" json:"metadata,omitempty"`
+	Message        string          `protobuf:"bytes,13,opt,name=message,proto3" json:"message,omitempty"`
+	unknownFields  protoimpl.UnknownFields
+	sizeCache      protoimpl.SizeCache
+}
+
+func (x *DataInfoPay) Reset() {
+	*x = DataInfoPay{}
+	mi := &file_mp_proto_msgTypes[0]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *DataInfoPay) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*DataInfoPay) ProtoMessage() {}
+
+func (x *DataInfoPay) ProtoReflect() protoreflect.Message {
+	mi := &file_mp_proto_msgTypes[0]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use DataInfoPay.ProtoReflect.Descriptor instead.
+func (*DataInfoPay) Descriptor() ([]byte, []int) {
+	return file_mp_proto_rawDescGZIP(), []int{0}
+}
+
+func (x *DataInfoPay) GetDateApproved() string {
+	if x != nil {
+		return x.DateApproved
+	}
+	return ""
+}
+
+func (x *DataInfoPay) GetDateCreated() string {
+	if x != nil {
+		return x.DateCreated
+	}
+	return ""
+}
+
+func (x *DataInfoPay) GetId() float64 {
+	if x != nil {
+		return x.Id
+	}
+	return 0
+}
+
+func (x *DataInfoPay) GetStatus() string {
+	if x != nil {
+		return x.Status
+	}
+	return ""
+}
+
+func (x *DataInfoPay) GetStatusDetail() string {
+	if x != nil {
+		return x.StatusDetail
+	}
+	return ""
+}
+
+func (x *DataInfoPay) GetTransactionAmount() float64 {
+	if x != nil {
+		return x.TransactionAmount
+	}
+	return 0
+}
+
+func (x *DataInfoPay) GetTransactionDetails() *TransactionDetails {
+	if x != nil {
+		return x.TransactionDetails
+	}
+	return nil
+}
+
+func (x *DataInfoPay) GetAdditionalInfo() *AdditionalInfo {
+	if x != nil {
+		return x.AdditionalInfo
+	}
+	return nil
+}
+
+func (x *DataInfoPay) GetPaymentMethod() *PaymentMethod {
+	if x != nil {
+		return x.PaymentMethod
+	}
+	return nil
+}
+
+func (x *DataInfoPay) GetPayer() *PayerInfo {
+	if x != nil {
+		return x.Payer
+	}
+	return nil
+}
+
+func (x *DataInfoPay) GetOperationType() string {
+	if x != nil {
+		return x.OperationType
+	}
+	return ""
+}
+
+func (x *DataInfoPay) GetMetadata() *Metadata {
+	if x != nil {
+		return x.Metadata
+	}
+	return nil
+}
+
+func (x *DataInfoPay) GetMessage() string {
+	if x != nil {
+		return x.Message
+	}
+	return ""
+}
+
+type PayerInfo struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	FirstName     string                 `protobuf:"bytes,1,opt,name=first_name,json=firstName,proto3" json:"first_name,omitempty"`
+	LastName      string                 `protobuf:"bytes,2,opt,name=last_name,json=lastName,proto3" json:"last_name,omitempty"`
+	Email         string                 `protobuf:"bytes,3,opt,name=email,proto3" json:"email,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *PayerInfo) Reset() {
+	*x = PayerInfo{}
+	mi := &file_mp_proto_msgTypes[1]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *PayerInfo) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*PayerInfo) ProtoMessage() {}
+
+func (x *PayerInfo) ProtoReflect() protoreflect.Message {
+	mi := &file_mp_proto_msgTypes[1]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use PayerInfo.ProtoReflect.Descriptor instead.
+func (*PayerInfo) Descriptor() ([]byte, []int) {
+	return file_mp_proto_rawDescGZIP(), []int{1}
+}
+
+func (x *PayerInfo) GetFirstName() string {
+	if x != nil {
+		return x.FirstName
+	}
+	return ""
+}
+
+func (x *PayerInfo) GetLastName() string {
+	if x != nil {
+		return x.LastName
+	}
+	return ""
+}
+
+func (x *PayerInfo) GetEmail() string {
+	if x != nil {
+		return x.Email
+	}
+	return ""
+}
+
+type ItemsCartPay struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	Title         string                 `protobuf:"bytes,2,opt,name=title,proto3" json:"title,omitempty"`
+	Quantity      string                 `protobuf:"bytes,3,opt,name=quantity,proto3" json:"quantity,omitempty"`
+	UnitPrice     string                 `protobuf:"bytes,4,opt,name=unit_price,json=unitPrice,proto3" json:"unit_price,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *ItemsCartPay) Reset() {
+	*x = ItemsCartPay{}
+	mi := &file_mp_proto_msgTypes[2]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ItemsCartPay) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ItemsCartPay) ProtoMessage() {}
+
+func (x *ItemsCartPay) ProtoReflect() protoreflect.Message {
+	mi := &file_mp_proto_msgTypes[2]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ItemsCartPay.ProtoReflect.Descriptor instead.
+func (*ItemsCartPay) Descriptor() ([]byte, []int) {
+	return file_mp_proto_rawDescGZIP(), []int{2}
+}
+
+func (x *ItemsCartPay) GetId() string {
+	if x != nil {
+		return x.Id
+	}
+	return ""
+}
+
+func (x *ItemsCartPay) GetTitle() string {
+	if x != nil {
+		return x.Title
+	}
+	return ""
+}
+
+func (x *ItemsCartPay) GetQuantity() string {
+	if x != nil {
+		return x.Quantity
+	}
+	return ""
+}
+
+func (x *ItemsCartPay) GetUnitPrice() string {
+	if x != nil {
+		return x.UnitPrice
+	}
+	return ""
+}
+
+type TransactionDetails struct {
+	state             protoimpl.MessageState `protogen:"open.v1"`
+	NetReceivedAmount float64                `protobuf:"fixed64,1,opt,name=net_received_amount,json=netReceivedAmount,proto3" json:"net_received_amount,omitempty"`
+	TotalPaidAmount   float64                `protobuf:"fixed64,2,opt,name=total_paid_amount,json=totalPaidAmount,proto3" json:"total_paid_amount,omitempty"`
+	unknownFields     protoimpl.UnknownFields
+	sizeCache         protoimpl.SizeCache
+}
+
+func (x *TransactionDetails) Reset() {
+	*x = TransactionDetails{}
+	mi := &file_mp_proto_msgTypes[3]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *TransactionDetails) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*TransactionDetails) ProtoMessage() {}
+
+func (x *TransactionDetails) ProtoReflect() protoreflect.Message {
+	mi := &file_mp_proto_msgTypes[3]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use TransactionDetails.ProtoReflect.Descriptor instead.
+func (*TransactionDetails) Descriptor() ([]byte, []int) {
+	return file_mp_proto_rawDescGZIP(), []int{3}
+}
+
+func (x *TransactionDetails) GetNetReceivedAmount() float64 {
+	if x != nil {
+		return x.NetReceivedAmount
+	}
+	return 0
+}
+
+func (x *TransactionDetails) GetTotalPaidAmount() float64 {
+	if x != nil {
+		return x.TotalPaidAmount
+	}
+	return 0
+}
+
+// Mensajes auxiliares para reemplazar los structs anónimos de Go
+type AdditionalInfo struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Items         []*ItemsCartPay        `protobuf:"bytes,1,rep,name=items,proto3" json:"items,omitempty"` // repeated equivale a un slice []
+	Payer         *PayerInfo             `protobuf:"bytes,2,opt,name=payer,proto3" json:"payer,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *AdditionalInfo) Reset() {
+	*x = AdditionalInfo{}
+	mi := &file_mp_proto_msgTypes[4]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *AdditionalInfo) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*AdditionalInfo) ProtoMessage() {}
+
+func (x *AdditionalInfo) ProtoReflect() protoreflect.Message {
+	mi := &file_mp_proto_msgTypes[4]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use AdditionalInfo.ProtoReflect.Descriptor instead.
+func (*AdditionalInfo) Descriptor() ([]byte, []int) {
+	return file_mp_proto_rawDescGZIP(), []int{4}
+}
+
+func (x *AdditionalInfo) GetItems() []*ItemsCartPay {
+	if x != nil {
+		return x.Items
+	}
+	return nil
+}
+
+func (x *AdditionalInfo) GetPayer() *PayerInfo {
+	if x != nil {
+		return x.Payer
+	}
+	return nil
+}
+
+type PaymentMethod struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Type          string                 `protobuf:"bytes,1,opt,name=type,proto3" json:"type,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *PaymentMethod) Reset() {
+	*x = PaymentMethod{}
+	mi := &file_mp_proto_msgTypes[5]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *PaymentMethod) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*PaymentMethod) ProtoMessage() {}
+
+func (x *PaymentMethod) ProtoReflect() protoreflect.Message {
+	mi := &file_mp_proto_msgTypes[5]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use PaymentMethod.ProtoReflect.Descriptor instead.
+func (*PaymentMethod) Descriptor() ([]byte, []int) {
+	return file_mp_proto_rawDescGZIP(), []int{5}
+}
+
+func (x *PaymentMethod) GetType() string {
+	if x != nil {
+		return x.Type
+	}
+	return ""
+}
+
+type Metadata struct {
+	state            protoimpl.MessageState `protogen:"open.v1"`
+	TenantIdentifier string                 `protobuf:"bytes,1,opt,name=tenant_identifier,json=tenantIdentifier,proto3" json:"tenant_identifier,omitempty"`
+	unknownFields    protoimpl.UnknownFields
+	sizeCache        protoimpl.SizeCache
+}
+
+func (x *Metadata) Reset() {
+	*x = Metadata{}
+	mi := &file_mp_proto_msgTypes[6]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *Metadata) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*Metadata) ProtoMessage() {}
+
+func (x *Metadata) ProtoReflect() protoreflect.Message {
+	mi := &file_mp_proto_msgTypes[6]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use Metadata.ProtoReflect.Descriptor instead.
+func (*Metadata) Descriptor() ([]byte, []int) {
+	return file_mp_proto_rawDescGZIP(), []int{6}
+}
+
+func (x *Metadata) GetTenantIdentifier() string {
+	if x != nil {
+		return x.TenantIdentifier
+	}
+	return ""
+}
+
+type DataInfoPayResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *DataInfoPayResponse) Reset() {
+	*x = DataInfoPayResponse{}
+	mi := &file_mp_proto_msgTypes[7]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *DataInfoPayResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*DataInfoPayResponse) ProtoMessage() {}
+
+func (x *DataInfoPayResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_mp_proto_msgTypes[7]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use DataInfoPayResponse.ProtoReflect.Descriptor instead.
+func (*DataInfoPayResponse) Descriptor() ([]byte, []int) {
+	return file_mp_proto_rawDescGZIP(), []int{7}
+}
+
 var File_mp_proto protoreflect.FileDescriptor
 
 const file_mp_proto_rawDesc = "" +
 	"\n" +
-	"\bmp.proto\x12\x02mp2\v\n" +
-	"\tMPServiceB>Z<github.com/DanielChachagua/ecommerce-noagestion-protos/pb;pbb\x06proto3"
+	"\bmp.proto\x12\x02mp\"\xa1\x04\n" +
+	"\vDataInfoPay\x12#\n" +
+	"\rdate_approved\x18\x01 \x01(\tR\fdateApproved\x12!\n" +
+	"\fdate_created\x18\x02 \x01(\tR\vdateCreated\x12\x0e\n" +
+	"\x02id\x18\x03 \x01(\x01R\x02id\x12\x16\n" +
+	"\x06status\x18\x04 \x01(\tR\x06status\x12#\n" +
+	"\rstatus_detail\x18\x05 \x01(\tR\fstatusDetail\x12-\n" +
+	"\x12transaction_amount\x18\x06 \x01(\x01R\x11transactionAmount\x12G\n" +
+	"\x13transaction_details\x18\a \x01(\v2\x16.mp.TransactionDetailsR\x12transactionDetails\x12;\n" +
+	"\x0fadditional_info\x18\b \x01(\v2\x12.mp.AdditionalInfoR\x0eadditionalInfo\x128\n" +
+	"\x0epayment_method\x18\t \x01(\v2\x11.mp.PaymentMethodR\rpaymentMethod\x12#\n" +
+	"\x05payer\x18\n" +
+	" \x01(\v2\r.mp.PayerInfoR\x05payer\x12%\n" +
+	"\x0eoperation_type\x18\v \x01(\tR\roperationType\x12(\n" +
+	"\bmetadata\x18\f \x01(\v2\f.mp.MetadataR\bmetadata\x12\x18\n" +
+	"\amessage\x18\r \x01(\tR\amessage\"]\n" +
+	"\tPayerInfo\x12\x1d\n" +
+	"\n" +
+	"first_name\x18\x01 \x01(\tR\tfirstName\x12\x1b\n" +
+	"\tlast_name\x18\x02 \x01(\tR\blastName\x12\x14\n" +
+	"\x05email\x18\x03 \x01(\tR\x05email\"o\n" +
+	"\fItemsCartPay\x12\x0e\n" +
+	"\x02id\x18\x01 \x01(\tR\x02id\x12\x14\n" +
+	"\x05title\x18\x02 \x01(\tR\x05title\x12\x1a\n" +
+	"\bquantity\x18\x03 \x01(\tR\bquantity\x12\x1d\n" +
+	"\n" +
+	"unit_price\x18\x04 \x01(\tR\tunitPrice\"p\n" +
+	"\x12TransactionDetails\x12.\n" +
+	"\x13net_received_amount\x18\x01 \x01(\x01R\x11netReceivedAmount\x12*\n" +
+	"\x11total_paid_amount\x18\x02 \x01(\x01R\x0ftotalPaidAmount\"]\n" +
+	"\x0eAdditionalInfo\x12&\n" +
+	"\x05items\x18\x01 \x03(\v2\x10.mp.ItemsCartPayR\x05items\x12#\n" +
+	"\x05payer\x18\x02 \x01(\v2\r.mp.PayerInfoR\x05payer\"#\n" +
+	"\rPaymentMethod\x12\x12\n" +
+	"\x04type\x18\x01 \x01(\tR\x04type\"7\n" +
+	"\bMetadata\x12+\n" +
+	"\x11tenant_identifier\x18\x01 \x01(\tR\x10tenantIdentifier\"\x15\n" +
+	"\x13DataInfoPayResponse2L\n" +
+	"\tMPService\x12?\n" +
+	"\x13SyncPurchasePayment\x12\x0f.mp.DataInfoPay\x1a\x17.mp.DataInfoPayResponseB>Z<github.com/DanielChachagua/ecommerce-noagestion-protos/pb;pbb\x06proto3"
 
-var file_mp_proto_goTypes = []any{}
+var (
+	file_mp_proto_rawDescOnce sync.Once
+	file_mp_proto_rawDescData []byte
+)
+
+func file_mp_proto_rawDescGZIP() []byte {
+	file_mp_proto_rawDescOnce.Do(func() {
+		file_mp_proto_rawDescData = protoimpl.X.CompressGZIP(unsafe.Slice(unsafe.StringData(file_mp_proto_rawDesc), len(file_mp_proto_rawDesc)))
+	})
+	return file_mp_proto_rawDescData
+}
+
+var file_mp_proto_msgTypes = make([]protoimpl.MessageInfo, 8)
+var file_mp_proto_goTypes = []any{
+	(*DataInfoPay)(nil),         // 0: mp.DataInfoPay
+	(*PayerInfo)(nil),           // 1: mp.PayerInfo
+	(*ItemsCartPay)(nil),        // 2: mp.ItemsCartPay
+	(*TransactionDetails)(nil),  // 3: mp.TransactionDetails
+	(*AdditionalInfo)(nil),      // 4: mp.AdditionalInfo
+	(*PaymentMethod)(nil),       // 5: mp.PaymentMethod
+	(*Metadata)(nil),            // 6: mp.Metadata
+	(*DataInfoPayResponse)(nil), // 7: mp.DataInfoPayResponse
+}
 var file_mp_proto_depIdxs = []int32{
-	0, // [0:0] is the sub-list for method output_type
-	0, // [0:0] is the sub-list for method input_type
-	0, // [0:0] is the sub-list for extension type_name
-	0, // [0:0] is the sub-list for extension extendee
-	0, // [0:0] is the sub-list for field type_name
+	3, // 0: mp.DataInfoPay.transaction_details:type_name -> mp.TransactionDetails
+	4, // 1: mp.DataInfoPay.additional_info:type_name -> mp.AdditionalInfo
+	5, // 2: mp.DataInfoPay.payment_method:type_name -> mp.PaymentMethod
+	1, // 3: mp.DataInfoPay.payer:type_name -> mp.PayerInfo
+	6, // 4: mp.DataInfoPay.metadata:type_name -> mp.Metadata
+	2, // 5: mp.AdditionalInfo.items:type_name -> mp.ItemsCartPay
+	1, // 6: mp.AdditionalInfo.payer:type_name -> mp.PayerInfo
+	0, // 7: mp.MPService.SyncPurchasePayment:input_type -> mp.DataInfoPay
+	7, // 8: mp.MPService.SyncPurchasePayment:output_type -> mp.DataInfoPayResponse
+	8, // [8:9] is the sub-list for method output_type
+	7, // [7:8] is the sub-list for method input_type
+	7, // [7:7] is the sub-list for extension type_name
+	7, // [7:7] is the sub-list for extension extendee
+	0, // [0:7] is the sub-list for field type_name
 }
 
 func init() { file_mp_proto_init() }
@@ -47,12 +615,13 @@ func file_mp_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_mp_proto_rawDesc), len(file_mp_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   0,
+			NumMessages:   8,
 			NumExtensions: 0,
 			NumServices:   1,
 		},
 		GoTypes:           file_mp_proto_goTypes,
 		DependencyIndexes: file_mp_proto_depIdxs,
+		MessageInfos:      file_mp_proto_msgTypes,
 	}.Build()
 	File_mp_proto = out.File
 	file_mp_proto_goTypes = nil
