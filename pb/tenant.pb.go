@@ -25,12 +25,12 @@ const (
 type SettingTenant struct {
 	state          protoimpl.MessageState `protogen:"open.v1"`
 	Id             int64                  `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
-	Logo           string                 `protobuf:"bytes,2,opt,name=logo,proto3" json:"logo,omitempty"`
-	FrontPage      string                 `protobuf:"bytes,3,opt,name=front_page,json=frontPage,proto3" json:"front_page,omitempty"`
-	Title          string                 `protobuf:"bytes,4,opt,name=title,proto3" json:"title,omitempty"`
-	Slogan         string                 `protobuf:"bytes,5,opt,name=slogan,proto3" json:"slogan,omitempty"`
-	PrimaryColor   string                 `protobuf:"bytes,6,opt,name=primary_color,json=primaryColor,proto3" json:"primary_color,omitempty"`
-	SecondaryColor string                 `protobuf:"bytes,7,opt,name=secondary_color,json=secondaryColor,proto3" json:"secondary_color,omitempty"`
+	Logo           *string                `protobuf:"bytes,2,opt,name=logo,proto3,oneof" json:"logo,omitempty"`
+	FrontPage      *string                `protobuf:"bytes,3,opt,name=front_page,json=frontPage,proto3,oneof" json:"front_page,omitempty"`
+	Title          *string                `protobuf:"bytes,4,opt,name=title,proto3,oneof" json:"title,omitempty"`
+	Slogan         *string                `protobuf:"bytes,5,opt,name=slogan,proto3,oneof" json:"slogan,omitempty"`
+	PrimaryColor   *string                `protobuf:"bytes,6,opt,name=primary_color,json=primaryColor,proto3,oneof" json:"primary_color,omitempty"`
+	SecondaryColor *string                `protobuf:"bytes,7,opt,name=secondary_color,json=secondaryColor,proto3,oneof" json:"secondary_color,omitempty"`
 	unknownFields  protoimpl.UnknownFields
 	sizeCache      protoimpl.SizeCache
 }
@@ -73,43 +73,43 @@ func (x *SettingTenant) GetId() int64 {
 }
 
 func (x *SettingTenant) GetLogo() string {
-	if x != nil {
-		return x.Logo
+	if x != nil && x.Logo != nil {
+		return *x.Logo
 	}
 	return ""
 }
 
 func (x *SettingTenant) GetFrontPage() string {
-	if x != nil {
-		return x.FrontPage
+	if x != nil && x.FrontPage != nil {
+		return *x.FrontPage
 	}
 	return ""
 }
 
 func (x *SettingTenant) GetTitle() string {
-	if x != nil {
-		return x.Title
+	if x != nil && x.Title != nil {
+		return *x.Title
 	}
 	return ""
 }
 
 func (x *SettingTenant) GetSlogan() string {
-	if x != nil {
-		return x.Slogan
+	if x != nil && x.Slogan != nil {
+		return *x.Slogan
 	}
 	return ""
 }
 
 func (x *SettingTenant) GetPrimaryColor() string {
-	if x != nil {
-		return x.PrimaryColor
+	if x != nil && x.PrimaryColor != nil {
+		return *x.PrimaryColor
 	}
 	return ""
 }
 
 func (x *SettingTenant) GetSecondaryColor() string {
-	if x != nil {
-		return x.SecondaryColor
+	if x != nil && x.SecondaryColor != nil {
+		return *x.SecondaryColor
 	}
 	return ""
 }
@@ -506,16 +506,22 @@ var File_tenant_proto protoreflect.FileDescriptor
 
 const file_tenant_proto_rawDesc = "" +
 	"\n" +
-	"\ftenant.proto\x12\x06tenant\x1a\x1fgoogle/protobuf/timestamp.proto\"\xce\x01\n" +
+	"\ftenant.proto\x12\x06tenant\x1a\x1fgoogle/protobuf/timestamp.proto\"\xbf\x02\n" +
 	"\rSettingTenant\x12\x0e\n" +
-	"\x02id\x18\x01 \x01(\x03R\x02id\x12\x12\n" +
-	"\x04logo\x18\x02 \x01(\tR\x04logo\x12\x1d\n" +
+	"\x02id\x18\x01 \x01(\x03R\x02id\x12\x17\n" +
+	"\x04logo\x18\x02 \x01(\tH\x00R\x04logo\x88\x01\x01\x12\"\n" +
 	"\n" +
-	"front_page\x18\x03 \x01(\tR\tfrontPage\x12\x14\n" +
-	"\x05title\x18\x04 \x01(\tR\x05title\x12\x16\n" +
-	"\x06slogan\x18\x05 \x01(\tR\x06slogan\x12#\n" +
-	"\rprimary_color\x18\x06 \x01(\tR\fprimaryColor\x12'\n" +
-	"\x0fsecondary_color\x18\a \x01(\tR\x0esecondaryColor\"\x95\x01\n" +
+	"front_page\x18\x03 \x01(\tH\x01R\tfrontPage\x88\x01\x01\x12\x19\n" +
+	"\x05title\x18\x04 \x01(\tH\x02R\x05title\x88\x01\x01\x12\x1b\n" +
+	"\x06slogan\x18\x05 \x01(\tH\x03R\x06slogan\x88\x01\x01\x12(\n" +
+	"\rprimary_color\x18\x06 \x01(\tH\x04R\fprimaryColor\x88\x01\x01\x12,\n" +
+	"\x0fsecondary_color\x18\a \x01(\tH\x05R\x0esecondaryColor\x88\x01\x01B\a\n" +
+	"\x05_logoB\r\n" +
+	"\v_front_pageB\b\n" +
+	"\x06_titleB\t\n" +
+	"\a_sloganB\x10\n" +
+	"\x0e_primary_colorB\x12\n" +
+	"\x10_secondary_color\"\x95\x01\n" +
 	"\x06Tenant\x12\x1e\n" +
 	"\n" +
 	"identifier\x18\x01 \x01(\tR\n" +
@@ -606,6 +612,7 @@ func file_tenant_proto_init() {
 	if File_tenant_proto != nil {
 		return
 	}
+	file_tenant_proto_msgTypes[0].OneofWrappers = []any{}
 	file_tenant_proto_msgTypes[1].OneofWrappers = []any{}
 	file_tenant_proto_msgTypes[6].OneofWrappers = []any{}
 	file_tenant_proto_msgTypes[7].OneofWrappers = []any{}

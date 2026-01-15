@@ -8,12 +8,12 @@ import "google/protobuf/timestamp.proto";
 
 message SettingTenant {
   int64 id = 1;
-  string logo = 2;
-  string front_page = 3;
-  string title = 4;
-  string slogan = 5;
-  string primary_color = 6;
-  string secondary_color = 7;
+  optional string logo = 2;
+  optional string front_page = 3;
+  optional string title = 4;
+  optional string slogan = 5;
+  optional string primary_color = 6;
+  optional string secondary_color = 7;
 }
 
 message Tenant {
