@@ -30,6 +30,7 @@ message TenantResponse {
   string phone = 5;
   string email = 6;
   SettingTenant setting_tenant = 7;
+  optional string token_mp = 8;
 }
 
 message TenantRequest {
@@ -40,7 +41,7 @@ message ListTenantsRequest {
 }
 
 message ListTenantsResponse {
-  repeated Tenant tenants = 1;
+  repeated TenantResponse tenants = 1;
 }
 
 message TenantRequestImageSetting {
@@ -49,13 +50,20 @@ message TenantRequestImageSetting {
   string tenant_identifier = 3;
 }
 
+
+
 message TenantUpdateImageResponse {
   optional string logo_uuid = 1;
   optional string front_page_uuid = 2; 
 }
 
+message Empty{}
+
+
+
 service TenantService {
   rpc ListTenants (ListTenantsRequest) returns (ListTenantsResponse);
   rpc TenantGetIdentifier (TenantRequest) returns (TenantResponse);
   rpc TenantUpdateImageSetting(TenantRequestImageSetting) returns (TenantUpdateImageResponse); 
+  rpc SubscribeTenants (Empty) returns (TenantResponse);
 }
