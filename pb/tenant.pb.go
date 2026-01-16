@@ -31,6 +31,7 @@ type SettingTenant struct {
 	Slogan         *string                `protobuf:"bytes,5,opt,name=slogan,proto3,oneof" json:"slogan,omitempty"`
 	PrimaryColor   *string                `protobuf:"bytes,6,opt,name=primary_color,json=primaryColor,proto3,oneof" json:"primary_color,omitempty"`
 	SecondaryColor *string                `protobuf:"bytes,7,opt,name=secondary_color,json=secondaryColor,proto3,oneof" json:"secondary_color,omitempty"`
+	Phone          *string                `protobuf:"bytes,8,opt,name=phone,proto3,oneof" json:"phone,omitempty"`
 	unknownFields  protoimpl.UnknownFields
 	sizeCache      protoimpl.SizeCache
 }
@@ -110,6 +111,13 @@ func (x *SettingTenant) GetPrimaryColor() string {
 func (x *SettingTenant) GetSecondaryColor() string {
 	if x != nil && x.SecondaryColor != nil {
 		return *x.SecondaryColor
+	}
+	return ""
+}
+
+func (x *SettingTenant) GetPhone() string {
+	if x != nil && x.Phone != nil {
+		return *x.Phone
 	}
 	return ""
 }
@@ -550,7 +558,7 @@ var File_tenant_proto protoreflect.FileDescriptor
 
 const file_tenant_proto_rawDesc = "" +
 	"\n" +
-	"\ftenant.proto\x12\x06tenant\x1a\x1fgoogle/protobuf/timestamp.proto\"\xbf\x02\n" +
+	"\ftenant.proto\x12\x06tenant\x1a\x1fgoogle/protobuf/timestamp.proto\"\xe4\x02\n" +
 	"\rSettingTenant\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\x03R\x02id\x12\x17\n" +
 	"\x04logo\x18\x02 \x01(\tH\x00R\x04logo\x88\x01\x01\x12\"\n" +
@@ -559,13 +567,15 @@ const file_tenant_proto_rawDesc = "" +
 	"\x05title\x18\x04 \x01(\tH\x02R\x05title\x88\x01\x01\x12\x1b\n" +
 	"\x06slogan\x18\x05 \x01(\tH\x03R\x06slogan\x88\x01\x01\x12(\n" +
 	"\rprimary_color\x18\x06 \x01(\tH\x04R\fprimaryColor\x88\x01\x01\x12,\n" +
-	"\x0fsecondary_color\x18\a \x01(\tH\x05R\x0esecondaryColor\x88\x01\x01B\a\n" +
+	"\x0fsecondary_color\x18\a \x01(\tH\x05R\x0esecondaryColor\x88\x01\x01\x12\x19\n" +
+	"\x05phone\x18\b \x01(\tH\x06R\x05phone\x88\x01\x01B\a\n" +
 	"\x05_logoB\r\n" +
 	"\v_front_pageB\b\n" +
 	"\x06_titleB\t\n" +
 	"\a_sloganB\x10\n" +
 	"\x0e_primary_colorB\x12\n" +
-	"\x10_secondary_color\"\x95\x01\n" +
+	"\x10_secondary_colorB\b\n" +
+	"\x06_phone\"\x95\x01\n" +
 	"\x06Tenant\x12\x1e\n" +
 	"\n" +
 	"identifier\x18\x01 \x01(\tR\n" +

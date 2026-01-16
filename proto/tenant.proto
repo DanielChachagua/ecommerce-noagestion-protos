@@ -14,6 +14,7 @@ message SettingTenant {
   optional string slogan = 5;
   optional string primary_color = 6;
   optional string secondary_color = 7;
+  optional string phone = 8;
 }
 
 message Tenant {
