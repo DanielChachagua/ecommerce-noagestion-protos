@@ -32,6 +32,7 @@ message TenantResponse {
   string email = 6;
   SettingTenant setting_tenant = 7;
   optional string token_mp = 8;
+  optional string token_emial = 9;
 }
 
 message TenantRequest {

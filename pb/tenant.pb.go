@@ -192,6 +192,7 @@ type TenantResponse struct {
 	Email         string                 `protobuf:"bytes,6,opt,name=email,proto3" json:"email,omitempty"`
 	SettingTenant *SettingTenant         `protobuf:"bytes,7,opt,name=setting_tenant,json=settingTenant,proto3" json:"setting_tenant,omitempty"`
 	TokenMp       *string                `protobuf:"bytes,8,opt,name=token_mp,json=tokenMp,proto3,oneof" json:"token_mp,omitempty"`
+	TokenEmial    *string                `protobuf:"bytes,9,opt,name=token_emial,json=tokenEmial,proto3,oneof" json:"token_emial,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -278,6 +279,13 @@ func (x *TenantResponse) GetSettingTenant() *SettingTenant {
 func (x *TenantResponse) GetTokenMp() string {
 	if x != nil && x.TokenMp != nil {
 		return *x.TokenMp
+	}
+	return ""
+}
+
+func (x *TenantResponse) GetTokenEmial() string {
+	if x != nil && x.TokenEmial != nil {
+		return *x.TokenEmial
 	}
 	return ""
 }
@@ -584,7 +592,7 @@ const file_tenant_proto_rawDesc = "" +
 	"\n" +
 	"expiration\x18\x03 \x01(\v2\x1a.google.protobuf.TimestampH\x00R\n" +
 	"expiration\x88\x01\x01B\r\n" +
-	"\v_expiration\"\x85\x02\n" +
+	"\v_expiration\"\xbb\x02\n" +
 	"\x0eTenantResponse\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\x03R\x02id\x12\x12\n" +
 	"\x04name\x18\x02 \x01(\tR\x04name\x12\x1e\n" +
@@ -595,8 +603,11 @@ const file_tenant_proto_rawDesc = "" +
 	"\x05phone\x18\x05 \x01(\tR\x05phone\x12\x14\n" +
 	"\x05email\x18\x06 \x01(\tR\x05email\x12<\n" +
 	"\x0esetting_tenant\x18\a \x01(\v2\x15.tenant.SettingTenantR\rsettingTenant\x12\x1e\n" +
-	"\btoken_mp\x18\b \x01(\tH\x00R\atokenMp\x88\x01\x01B\v\n" +
-	"\t_token_mp\"/\n" +
+	"\btoken_mp\x18\b \x01(\tH\x00R\atokenMp\x88\x01\x01\x12$\n" +
+	"\vtoken_emial\x18\t \x01(\tH\x01R\n" +
+	"tokenEmial\x88\x01\x01B\v\n" +
+	"\t_token_mpB\x0e\n" +
+	"\f_token_emial\"/\n" +
 	"\rTenantRequest\x12\x1e\n" +
 	"\n" +
 	"identifier\x18\x01 \x01(\tR\n" +
