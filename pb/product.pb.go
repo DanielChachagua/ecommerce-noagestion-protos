@@ -617,6 +617,198 @@ func (x *ProductRequest) GetProductId() int64 {
 	return 0
 }
 
+type ProductValidateResquest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	ProductIds    []int64                `protobuf:"varint,1,rep,packed,name=product_ids,json=productIds,proto3" json:"product_ids,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *ProductValidateResquest) Reset() {
+	*x = ProductValidateResquest{}
+	mi := &file_product_proto_msgTypes[8]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ProductValidateResquest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ProductValidateResquest) ProtoMessage() {}
+
+func (x *ProductValidateResquest) ProtoReflect() protoreflect.Message {
+	mi := &file_product_proto_msgTypes[8]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ProductValidateResquest.ProtoReflect.Descriptor instead.
+func (*ProductValidateResquest) Descriptor() ([]byte, []int) {
+	return file_product_proto_rawDescGZIP(), []int{8}
+}
+
+func (x *ProductValidateResquest) GetProductIds() []int64 {
+	if x != nil {
+		return x.ProductIds
+	}
+	return nil
+}
+
+type ProductValidateRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	ProductIds    []int64                `protobuf:"varint,1,rep,packed,name=product_ids,json=productIds,proto3" json:"product_ids,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *ProductValidateRequest) Reset() {
+	*x = ProductValidateRequest{}
+	mi := &file_product_proto_msgTypes[9]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ProductValidateRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ProductValidateRequest) ProtoMessage() {}
+
+func (x *ProductValidateRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_product_proto_msgTypes[9]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ProductValidateRequest.ProtoReflect.Descriptor instead.
+func (*ProductValidateRequest) Descriptor() ([]byte, []int) {
+	return file_product_proto_rawDescGZIP(), []int{9}
+}
+
+func (x *ProductValidateRequest) GetProductIds() []int64 {
+	if x != nil {
+		return x.ProductIds
+	}
+	return nil
+}
+
+type ProductValidate struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Id            int64                  `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
+	Stock         float64                `protobuf:"fixed64,2,opt,name=stock,proto3" json:"stock,omitempty"`
+	Price         float64                `protobuf:"fixed64,3,opt,name=price,proto3" json:"price,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *ProductValidate) Reset() {
+	*x = ProductValidate{}
+	mi := &file_product_proto_msgTypes[10]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ProductValidate) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ProductValidate) ProtoMessage() {}
+
+func (x *ProductValidate) ProtoReflect() protoreflect.Message {
+	mi := &file_product_proto_msgTypes[10]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ProductValidate.ProtoReflect.Descriptor instead.
+func (*ProductValidate) Descriptor() ([]byte, []int) {
+	return file_product_proto_rawDescGZIP(), []int{10}
+}
+
+func (x *ProductValidate) GetId() int64 {
+	if x != nil {
+		return x.Id
+	}
+	return 0
+}
+
+func (x *ProductValidate) GetStock() float64 {
+	if x != nil {
+		return x.Stock
+	}
+	return 0
+}
+
+func (x *ProductValidate) GetPrice() float64 {
+	if x != nil {
+		return x.Price
+	}
+	return 0
+}
+
+type ProductValidateResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Products      []*ProductValidate     `protobuf:"bytes,1,rep,name=products,proto3" json:"products,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *ProductValidateResponse) Reset() {
+	*x = ProductValidateResponse{}
+	mi := &file_product_proto_msgTypes[11]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ProductValidateResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ProductValidateResponse) ProtoMessage() {}
+
+func (x *ProductValidateResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_product_proto_msgTypes[11]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ProductValidateResponse.ProtoReflect.Descriptor instead.
+func (*ProductValidateResponse) Descriptor() ([]byte, []int) {
+	return file_product_proto_rawDescGZIP(), []int{11}
+}
+
+func (x *ProductValidateResponse) GetProducts() []*ProductValidate {
+	if x != nil {
+		return x.Products
+	}
+	return nil
+}
+
 var File_product_proto protoreflect.FileDescriptor
 
 const file_product_proto_rawDesc = "" +
@@ -676,13 +868,26 @@ const file_product_proto_rawDesc = "" +
 	"\asuccess\x18\x01 \x01(\bR\asuccess\"/\n" +
 	"\x0eProductRequest\x12\x1d\n" +
 	"\n" +
-	"product_id\x18\x01 \x01(\x03R\tproductId2\x9d\x02\n" +
+	"product_id\x18\x01 \x01(\x03R\tproductId\":\n" +
+	"\x17ProductValidateResquest\x12\x1f\n" +
+	"\vproduct_ids\x18\x01 \x03(\x03R\n" +
+	"productIds\"9\n" +
+	"\x16ProductValidateRequest\x12\x1f\n" +
+	"\vproduct_ids\x18\x01 \x03(\x03R\n" +
+	"productIds\"M\n" +
+	"\x0fProductValidate\x12\x0e\n" +
+	"\x02id\x18\x01 \x01(\x03R\x02id\x12\x14\n" +
+	"\x05stock\x18\x02 \x01(\x01R\x05stock\x12\x14\n" +
+	"\x05price\x18\x03 \x01(\x01R\x05price\"O\n" +
+	"\x17ProductValidateResponse\x124\n" +
+	"\bproducts\x18\x01 \x03(\v2\x18.product.ProductValidateR\bproducts2\xf5\x02\n" +
 	"\x0eProductService\x12K\n" +
 	"\fListProducts\x12\x1c.product.ListProductsRequest\x1a\x1d.product.ListProductsResponse\x12:\n" +
 	"\n" +
 	"GetProduct\x12\x1a.product.GetProductRequest\x1a\x10.product.Product\x12E\n" +
 	"\fSaveUrlImage\x12\x19.product.SaveImageRequest\x1a\x1a.product.SaveImageResponse\x12;\n" +
-	"\x0eGetProductByID\x12\x17.product.ProductRequest\x1a\x10.product.ProductB>Z<github.com/DanielChachagua/ecommerce-noagestion-protos/pb;pbb\x06proto3"
+	"\x0eGetProductByID\x12\x17.product.ProductRequest\x1a\x10.product.Product\x12V\n" +
+	"\x10ValidatePtoducts\x12 .product.ProductValidateResquest\x1a .product.ProductValidateResponseB>Z<github.com/DanielChachagua/ecommerce-noagestion-protos/pb;pbb\x06proto3"
 
 var (
 	file_product_proto_rawDescOnce sync.Once
@@ -697,7 +902,7 @@ func file_product_proto_rawDescGZIP() []byte {
 }
 
 var file_product_proto_enumTypes = make([]protoimpl.EnumInfo, 1)
-var file_product_proto_msgTypes = make([]protoimpl.MessageInfo, 8)
+var file_product_proto_msgTypes = make([]protoimpl.MessageInfo, 12)
 var file_product_proto_goTypes = []any{
 	(ListProductsRequest_SortBy)(0), // 0: product.ListProductsRequest.SortBy
 	(*Product)(nil),                 // 1: product.Product
@@ -708,26 +913,33 @@ var file_product_proto_goTypes = []any{
 	(*SaveImageRequest)(nil),        // 6: product.SaveImageRequest
 	(*SaveImageResponse)(nil),       // 7: product.SaveImageResponse
 	(*ProductRequest)(nil),          // 8: product.ProductRequest
-	(*Category)(nil),                // 9: category.Category
+	(*ProductValidateResquest)(nil), // 9: product.ProductValidateResquest
+	(*ProductValidateRequest)(nil),  // 10: product.ProductValidateRequest
+	(*ProductValidate)(nil),         // 11: product.ProductValidate
+	(*ProductValidateResponse)(nil), // 12: product.ProductValidateResponse
+	(*Category)(nil),                // 13: category.Category
 }
 var file_product_proto_depIdxs = []int32{
-	9, // 0: product.Product.category:type_name -> category.Category
-	9, // 1: product.ProductDTO.category:type_name -> category.Category
-	0, // 2: product.ListProductsRequest.sort:type_name -> product.ListProductsRequest.SortBy
-	2, // 3: product.ListProductsResponse.products:type_name -> product.ProductDTO
-	3, // 4: product.ProductService.ListProducts:input_type -> product.ListProductsRequest
-	5, // 5: product.ProductService.GetProduct:input_type -> product.GetProductRequest
-	6, // 6: product.ProductService.SaveUrlImage:input_type -> product.SaveImageRequest
-	8, // 7: product.ProductService.GetProductByID:input_type -> product.ProductRequest
-	4, // 8: product.ProductService.ListProducts:output_type -> product.ListProductsResponse
-	1, // 9: product.ProductService.GetProduct:output_type -> product.Product
-	7, // 10: product.ProductService.SaveUrlImage:output_type -> product.SaveImageResponse
-	1, // 11: product.ProductService.GetProductByID:output_type -> product.Product
-	8, // [8:12] is the sub-list for method output_type
-	4, // [4:8] is the sub-list for method input_type
-	4, // [4:4] is the sub-list for extension type_name
-	4, // [4:4] is the sub-list for extension extendee
-	0, // [0:4] is the sub-list for field type_name
+	13, // 0: product.Product.category:type_name -> category.Category
+	13, // 1: product.ProductDTO.category:type_name -> category.Category
+	0,  // 2: product.ListProductsRequest.sort:type_name -> product.ListProductsRequest.SortBy
+	2,  // 3: product.ListProductsResponse.products:type_name -> product.ProductDTO
+	11, // 4: product.ProductValidateResponse.products:type_name -> product.ProductValidate
+	3,  // 5: product.ProductService.ListProducts:input_type -> product.ListProductsRequest
+	5,  // 6: product.ProductService.GetProduct:input_type -> product.GetProductRequest
+	6,  // 7: product.ProductService.SaveUrlImage:input_type -> product.SaveImageRequest
+	8,  // 8: product.ProductService.GetProductByID:input_type -> product.ProductRequest
+	9,  // 9: product.ProductService.ValidatePtoducts:input_type -> product.ProductValidateResquest
+	4,  // 10: product.ProductService.ListProducts:output_type -> product.ListProductsResponse
+	1,  // 11: product.ProductService.GetProduct:output_type -> product.Product
+	7,  // 12: product.ProductService.SaveUrlImage:output_type -> product.SaveImageResponse
+	1,  // 13: product.ProductService.GetProductByID:output_type -> product.Product
+	12, // 14: product.ProductService.ValidatePtoducts:output_type -> product.ProductValidateResponse
+	10, // [10:15] is the sub-list for method output_type
+	5,  // [5:10] is the sub-list for method input_type
+	5,  // [5:5] is the sub-list for extension type_name
+	5,  // [5:5] is the sub-list for extension extendee
+	0,  // [0:5] is the sub-list for field type_name
 }
 
 func init() { file_product_proto_init() }
@@ -746,7 +958,7 @@ func file_product_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_product_proto_rawDesc), len(file_product_proto_rawDesc)),
 			NumEnums:      1,
-			NumMessages:   8,
+			NumMessages:   12,
 			NumExtensions: 0,
 			NumServices:   1,
 		},

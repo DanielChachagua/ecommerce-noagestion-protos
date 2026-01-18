@@ -67,9 +67,28 @@ message ProductRequest{
   int64 product_id = 1;
 }
 
+message ProductValidateResquest {
+  repeated int64 product_ids = 1;
+}
+
+message ProductValidateRequest {
+  repeated int64 product_ids = 1;
+}
+
+message ProductValidate {
+  int64 id = 1;
+  double stock = 2;
+  double price = 3;
+}
+
+message ProductValidateResponse {
+  repeated ProductValidate products = 1;
+}
+
 service ProductService {
   rpc ListProducts (ListProductsRequest) returns (ListProductsResponse);
   rpc GetProduct (GetProductRequest) returns (Product);
   rpc SaveUrlImage (SaveImageRequest) returns (SaveImageResponse);
   rpc GetProductByID (ProductRequest) returns (Product);
+  rpc ValidatePtoducts (ProductValidateResquest) returns (ProductValidateResponse);
 }
