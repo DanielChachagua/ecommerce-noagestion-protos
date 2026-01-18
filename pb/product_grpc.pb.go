@@ -23,7 +23,7 @@ const (
 	ProductService_GetProduct_FullMethodName       = "/product.ProductService/GetProduct"
 	ProductService_SaveUrlImage_FullMethodName     = "/product.ProductService/SaveUrlImage"
 	ProductService_GetProductByID_FullMethodName   = "/product.ProductService/GetProductByID"
-	ProductService_ValidatePtoducts_FullMethodName = "/product.ProductService/ValidatePtoducts"
+	ProductService_ValidateProducts_FullMethodName = "/product.ProductService/ValidateProducts"
 )
 
 // ProductServiceClient is the client API for ProductService service.
@@ -34,7 +34,7 @@ type ProductServiceClient interface {
 	GetProduct(ctx context.Context, in *GetProductRequest, opts ...grpc.CallOption) (*Product, error)
 	SaveUrlImage(ctx context.Context, in *SaveImageRequest, opts ...grpc.CallOption) (*SaveImageResponse, error)
 	GetProductByID(ctx context.Context, in *ProductRequest, opts ...grpc.CallOption) (*Product, error)
-	ValidatePtoducts(ctx context.Context, in *ProductValidateResquest, opts ...grpc.CallOption) (*ProductValidateResponse, error)
+	ValidateProducts(ctx context.Context, in *ProductValidateResquest, opts ...grpc.CallOption) (*ProductValidateResponse, error)
 }
 
 type productServiceClient struct {
@@ -85,10 +85,10 @@ func (c *productServiceClient) GetProductByID(ctx context.Context, in *ProductRe
 	return out, nil
 }
 
-func (c *productServiceClient) ValidatePtoducts(ctx context.Context, in *ProductValidateResquest, opts ...grpc.CallOption) (*ProductValidateResponse, error) {
+func (c *productServiceClient) ValidateProducts(ctx context.Context, in *ProductValidateResquest, opts ...grpc.CallOption) (*ProductValidateResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(ProductValidateResponse)
-	err := c.cc.Invoke(ctx, ProductService_ValidatePtoducts_FullMethodName, in, out, cOpts...)
+	err := c.cc.Invoke(ctx, ProductService_ValidateProducts_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -103,7 +103,7 @@ type ProductServiceServer interface {
 	GetProduct(context.Context, *GetProductRequest) (*Product, error)
 	SaveUrlImage(context.Context, *SaveImageRequest) (*SaveImageResponse, error)
 	GetProductByID(context.Context, *ProductRequest) (*Product, error)
-	ValidatePtoducts(context.Context, *ProductValidateResquest) (*ProductValidateResponse, error)
+	ValidateProducts(context.Context, *ProductValidateResquest) (*ProductValidateResponse, error)
 	mustEmbedUnimplementedProductServiceServer()
 }
 
@@ -126,8 +126,8 @@ func (UnimplementedProductServiceServer) SaveUrlImage(context.Context, *SaveImag
 func (UnimplementedProductServiceServer) GetProductByID(context.Context, *ProductRequest) (*Product, error) {
 	return nil, status.Error(codes.Unimplemented, "method GetProductByID not implemented")
 }
-func (UnimplementedProductServiceServer) ValidatePtoducts(context.Context, *ProductValidateResquest) (*ProductValidateResponse, error) {
-	return nil, status.Error(codes.Unimplemented, "method ValidatePtoducts not implemented")
+func (UnimplementedProductServiceServer) ValidateProducts(context.Context, *ProductValidateResquest) (*ProductValidateResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method ValidateProducts not implemented")
 }
 func (UnimplementedProductServiceServer) mustEmbedUnimplementedProductServiceServer() {}
 func (UnimplementedProductServiceServer) testEmbeddedByValue()                        {}
@@ -222,20 +222,20 @@ func _ProductService_GetProductByID_Handler(srv interface{}, ctx context.Context
 	return interceptor(ctx, in, info, handler)
 }
 
-func _ProductService_ValidatePtoducts_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _ProductService_ValidateProducts_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(ProductValidateResquest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(ProductServiceServer).ValidatePtoducts(ctx, in)
+		return srv.(ProductServiceServer).ValidateProducts(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: ProductService_ValidatePtoducts_FullMethodName,
+		FullMethod: ProductService_ValidateProducts_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ProductServiceServer).ValidatePtoducts(ctx, req.(*ProductValidateResquest))
+		return srv.(ProductServiceServer).ValidateProducts(ctx, req.(*ProductValidateResquest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -264,8 +264,8 @@ var ProductService_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _ProductService_GetProductByID_Handler,
 		},
 		{
-			MethodName: "ValidatePtoducts",
-			Handler:    _ProductService_ValidatePtoducts_Handler,
+			MethodName: "ValidateProducts",
+			Handler:    _ProductService_ValidateProducts_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

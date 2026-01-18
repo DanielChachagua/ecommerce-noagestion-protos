@@ -90,5 +90,5 @@ service ProductService {
   rpc GetProduct (GetProductRequest) returns (Product);
   rpc SaveUrlImage (SaveImageRequest) returns (SaveImageResponse);
   rpc GetProductByID (ProductRequest) returns (Product);
-  rpc ValidatePtoducts (ProductValidateResquest) returns (ProductValidateResponse);
+  rpc ValidateProducts (ProductValidateResquest) returns (ProductValidateResponse);
 }

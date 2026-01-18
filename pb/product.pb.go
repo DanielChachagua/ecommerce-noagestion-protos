@@ -887,7 +887,7 @@ const file_product_proto_rawDesc = "" +
 	"GetProduct\x12\x1a.product.GetProductRequest\x1a\x10.product.Product\x12E\n" +
 	"\fSaveUrlImage\x12\x19.product.SaveImageRequest\x1a\x1a.product.SaveImageResponse\x12;\n" +
 	"\x0eGetProductByID\x12\x17.product.ProductRequest\x1a\x10.product.Product\x12V\n" +
-	"\x10ValidatePtoducts\x12 .product.ProductValidateResquest\x1a .product.ProductValidateResponseB>Z<github.com/DanielChachagua/ecommerce-noagestion-protos/pb;pbb\x06proto3"
+	"\x10ValidateProducts\x12 .product.ProductValidateResquest\x1a .product.ProductValidateResponseB>Z<github.com/DanielChachagua/ecommerce-noagestion-protos/pb;pbb\x06proto3"
 
 var (
 	file_product_proto_rawDescOnce sync.Once
@@ -929,12 +929,12 @@ var file_product_proto_depIdxs = []int32{
 	5,  // 6: product.ProductService.GetProduct:input_type -> product.GetProductRequest
 	6,  // 7: product.ProductService.SaveUrlImage:input_type -> product.SaveImageRequest
 	8,  // 8: product.ProductService.GetProductByID:input_type -> product.ProductRequest
-	9,  // 9: product.ProductService.ValidatePtoducts:input_type -> product.ProductValidateResquest
+	9,  // 9: product.ProductService.ValidateProducts:input_type -> product.ProductValidateResquest
 	4,  // 10: product.ProductService.ListProducts:output_type -> product.ListProductsResponse
 	1,  // 11: product.ProductService.GetProduct:output_type -> product.Product
 	7,  // 12: product.ProductService.SaveUrlImage:output_type -> product.SaveImageResponse
 	1,  // 13: product.ProductService.GetProductByID:output_type -> product.Product
-	12, // 14: product.ProductService.ValidatePtoducts:output_type -> product.ProductValidateResponse
+	12, // 14: product.ProductService.ValidateProducts:output_type -> product.ProductValidateResponse
 	10, // [10:15] is the sub-list for method output_type
 	5,  // [5:10] is the sub-list for method input_type
 	5,  // [5:5] is the sub-list for extension type_name
